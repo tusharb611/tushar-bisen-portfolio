@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boosting Efficiency with PreCalculated ESG Data — Case Study | Tushar Bisen</title>
+<link rel="icon" type="image/png" href="logo.png">
+<script>(function(){var t=localStorage.getItem('tb-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg-page:#FAF7F2;--bg-surface:#F0EBE1;--bg-card:#FFFFF8;--bg-nav:rgba(250,247,242,0.9);
+  --text-primary:#2C1F14;--text-secondary:#6B5040;--text-muted:#A8896E;
+  --border:rgba(61,43,31,0.1);--border-med:rgba(61,43,31,0.18);
+  --terra:#C4623A;--terra-light:#E8825E;--terra-pale:#FAE8DF;--brown-deep:#2E1E12;
+  --toggle-bg:#E8DDD0;--toggle-knob:#fff;
+  --accent:#C4623A;--accent-dim:rgba(196,98,58,0.08);--accent-border:rgba(196,98,58,0.22);
+  --wf-bg:#F5F0E8;--wf-card:#FFFFF8;--wf-border:rgba(61,43,31,0.12);
+  --wf-block:rgba(61,43,31,0.08);--wf-block-med:rgba(61,43,31,0.14);
+  --wf-accent:rgba(196,98,58,0.12);--wf-accent-b:rgba(196,98,58,0.28);
+  --wf-green:rgba(60,160,100,0.12);--wf-green-b:rgba(60,160,100,0.32);
+  --wf-gold:rgba(180,130,40,0.1);--wf-gold-b:rgba(180,130,40,0.28);
+  --wf-blue:rgba(60,100,180,0.1);--wf-blue-b:rgba(60,100,180,0.28);
+  --wf-red:rgba(200,60,60,0.1);--wf-red-b:rgba(200,60,60,0.28);
+  --wf-text:rgba(61,43,31,0.4);--insight-bg:#F5F0E8;--quote-border:rgba(196,98,58,0.25);
+}
+[data-theme="dark"] {
+  --bg-page:#141010;--bg-surface:#1C1714;--bg-card:#211C18;--bg-nav:rgba(18,14,12,0.92);
+  --text-primary:#F0E8DF;--text-secondary:#B09A88;--text-muted:#7A6558;
+  --border:rgba(240,220,200,0.08);--border-med:rgba(240,220,200,0.14);
+  --terra:#E0784E;--terra-light:#F0997A;--terra-pale:rgba(224,120,78,0.12);--brown-deep:#0C0908;
+  --toggle-bg:#3A2E26;--toggle-knob:#E0784E;
+  --accent:#E0784E;--accent-dim:rgba(224,120,78,0.1);--accent-border:rgba(224,120,78,0.25);
+  --wf-bg:#1A1614;--wf-card:#211C18;--wf-border:rgba(240,220,200,0.1);
+  --wf-block:rgba(240,220,200,0.06);--wf-block-med:rgba(240,220,200,0.12);
+  --wf-accent:rgba(224,120,78,0.1);--wf-accent-b:rgba(224,120,78,0.28);
+  --wf-green:rgba(78,207,160,0.08);--wf-green-b:rgba(78,207,160,0.28);
+  --wf-gold:rgba(212,168,67,0.08);--wf-gold-b:rgba(212,168,67,0.28);
+  --wf-blue:rgba(80,130,220,0.08);--wf-blue-b:rgba(80,130,220,0.28);
+  --wf-red:rgba(220,80,80,0.08);--wf-red-b:rgba(220,80,80,0.28);
+  --wf-text:rgba(240,220,200,0.28);--insight-bg:#1C1714;--quote-border:rgba(224,120,78,0.22);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text-primary);line-height:1.7;overflow-x:hidden;transition:background .3s,color .3s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 4rem;background:var(--bg-nav);backdrop-filter:blur(16px);border-bottom:.5px solid var(--border);transition:background .3s;}
+.nav-logo-img{height:48px;width:auto;vertical-align:middle;display:block;transition:filter .3s;}
+[data-theme="dark"] .nav-logo-img{filter:invert(1) brightness(2);}
+.nav-right{display:flex;gap:2rem;list-style:none;align-items:center;}
+.nav-right a{font-size:.78rem;font-weight:400;letter-spacing:.07em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;transition:color .2s;}
+.nav-right a:hover{color:var(--terra);}
+.nav-back-btn{display:flex;align-items:center;gap:.4rem;}
+.nav-back-btn svg{transition:transform .2s;}
+.nav-back-btn:hover svg{transform:translateX(-3px);}
+.nav-resume{padding:.48rem 1.15rem;background:var(--terra)!important;color:#fff!important;border-radius:100px;transition:opacity .2s!important;}
+.nav-resume:hover{opacity:.85!important;}
+.theme-toggle{width:42px;height:24px;border-radius:100px;background:var(--toggle-bg);border:none;cursor:pointer;position:relative;flex-shrink:0;transition:background .3s;outline:none;}
+.theme-toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--toggle-knob);transition:transform .3s cubic-bezier(.34,1.56,.64,1),background .3s;}
+[data-theme="dark"] .theme-toggle::after{transform:translateX(18px);}
+.toggle-icon{position:absolute;top:50%;font-size:10px;line-height:1;transform:translateY(-50%);pointer-events:none;transition:opacity .2s;}
+.icon-sun{left:5px;opacity:1;}.icon-moon{right:4px;opacity:0;}
+[data-theme="dark"] .icon-sun{opacity:0;}[data-theme="dark"] .icon-moon{opacity:1;}
+.case-hero{min-height:72vh;display:flex;flex-direction:column;justify-content:flex-end;padding:9rem 4rem 5rem;position:relative;overflow:hidden;background:var(--bg-surface);transition:background .3s;}
+.hero-orb{position:absolute;width:600px;height:600px;border-radius:50%;top:-150px;right:-80px;pointer-events:none;background:radial-gradient(circle,rgba(196,98,58,.08) 0%,transparent 68%);transition:background .3s;}
+[data-theme="dark"] .hero-orb{background:radial-gradient(circle,rgba(224,120,78,.1) 0%,transparent 68%);}
+.hero-inner{position:relative;z-index:1;max-width:920px;}
+.hero-eyebrow{display:flex;align-items:center;gap:.6rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.h-tag{padding:.28rem .85rem;border-radius:100px;font-size:.7rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;border:1px solid var(--border-med);color:var(--text-muted);transition:all .3s;}
+.h-tag.accent{border-color:var(--accent-border);color:var(--accent);background:var(--accent-dim);}
+h1.case-title{font-family:'Lora',serif;font-size:clamp(2.4rem,5vw,4.2rem);font-weight:400;line-height:1.1;letter-spacing:-.025em;color:var(--text-primary);margin-bottom:1.25rem;transition:color .3s;}
+h1.case-title em{font-style:italic;color:var(--terra);}
+.hero-sub{font-size:1rem;font-weight:300;color:var(--text-secondary);max-width:620px;line-height:1.8;margin-bottom:2.5rem;}
+.hero-stats{display:flex;gap:3rem;flex-wrap:wrap;border-top:.5px solid var(--border);padding-top:2rem;}
+.hstat-val{font-family:'Lora',serif;font-size:2rem;font-weight:400;color:var(--text-primary);line-height:1;}
+.hstat-val em{font-style:normal;color:var(--terra);font-size:1.3rem;}
+.hstat-lbl{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-top:.2rem;}
+.section{padding:5rem 4rem;transition:background .3s;}
+.section-inner{max-width:880px;margin:0 auto;}
+.section-label{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terra);font-weight:500;margin-bottom:2rem;display:flex;align-items:center;gap:.6rem;}
+.section-label::after{content:'';display:block;width:40px;height:1px;background:var(--terra);opacity:.35;}
+h2.section-title{font-family:'Lora',serif;font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:400;letter-spacing:-.02em;color:var(--text-primary);margin-bottom:1.25rem;line-height:1.25;}
+.body-text{font-size:.97rem;font-weight:300;color:var(--text-secondary);line-height:1.85;margin-bottom:1.1rem;}
+.body-text strong{color:var(--text-primary);font-weight:500;}
+.divider{border:none;border-top:.5px solid var(--border);margin:0;}
+.callout{background:var(--bg-card);border:1px solid var(--border-med);border-left:3px solid var(--terra);border-radius:12px;padding:1.5rem 1.75rem;margin:1.75rem 0;transition:background .3s,border-color .3s;}
+.callout p{font-size:.97rem;font-weight:300;color:var(--text-secondary);line-height:1.8;margin:0;}
+.callout.green{border-left-color:#3CA064;}.callout p strong{color:var(--text-primary);}
+.hmw{background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:12px;padding:1.5rem 1.75rem;margin:1.75rem 0;}
+.hmw p{font-size:.97rem;font-weight:400;color:var(--text-primary);line-height:1.8;margin:0;font-style:italic;}
+.insight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.75rem 0;}
+.insight-card{background:var(--insight-bg);border:1px solid var(--border);border-radius:12px;padding:1.4rem;transition:background .3s,border-color .3s;}
+.insight-icon{font-size:1.3rem;margin-bottom:.6rem;}
+.insight-title{font-size:.88rem;font-weight:500;color:var(--text-primary);margin-bottom:.35rem;}
+.insight-desc{font-size:.82rem;font-weight:300;color:var(--text-secondary);line-height:1.65;}
+.quote-block{border-left:2px solid var(--quote-border);padding:.75rem 1.5rem;margin:1.75rem 0;}
+.quote-text{font-family:'Lora',serif;font-size:1.05rem;font-style:italic;color:var(--text-secondary);line-height:1.75;margin-bottom:.4rem;}
+.quote-attr{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);}
+.process-steps{margin:1.75rem 0;}
+.process-step{display:flex;gap:1.5rem;padding:1.4rem 0;border-bottom:.5px solid var(--border);}
+.process-step:last-child{border-bottom:none;}
+.step-num{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--terra);opacity:.6;width:28px;flex-shrink:0;padding-top:.2rem;}
+.step-title{font-size:.93rem;font-weight:500;color:var(--text-primary);margin-bottom:.35rem;}
+.step-desc{font-size:.85rem;font-weight:300;color:var(--text-secondary);line-height:1.7;}
+.outcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.75rem 0;}
+.outcome-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.4rem;transition:background .3s;}
+.outcome-card.hi{border-color:var(--accent-border);background:var(--accent-dim);}
+.outcome-icon{font-size:1.4rem;margin-bottom:.6rem;}
+.outcome-title{font-size:.9rem;font-weight:500;color:var(--text-primary);margin-bottom:.3rem;}
+.outcome-desc{font-size:.82rem;font-weight:300;color:var(--text-secondary);line-height:1.65;}
+.reflection-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.5rem;}
+.refl-card{padding:1.4rem;border-radius:12px;border:1px solid var(--border);}
+.refl-card.worked{border-color:var(--accent-border);}
+.refl-heading{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-bottom:.75rem;color:var(--terra);}
+.refl-card.learned .refl-heading{color:var(--text-muted);}
+.refl-list{list-style:none;display:flex;flex-direction:column;gap:.55rem;}
+.refl-list li{font-size:.85rem;font-weight:300;color:var(--text-secondary);line-height:1.6;padding-left:1rem;position:relative;}
+.refl-list li::before{content:"—";position:absolute;left:0;color:var(--text-muted);}
+.wf-section{background:var(--bg-surface);transition:background .3s;}
+.wireframe-stack{display:flex;flex-direction:column;gap:4rem;margin-top:2rem;}
+.wf-item-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);font-weight:500;margin-bottom:.4rem;}
+.wf-item-caption{font-size:.85rem;color:var(--text-muted);font-weight:300;line-height:1.6;margin-bottom:1.25rem;max-width:600px;}
+.wf-browser{background:var(--wf-card);border:1px solid var(--wf-border);border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.06);transition:background .3s,border-color .3s;}
+.wf-chrome{background:var(--wf-bg);border-bottom:1px solid var(--wf-border);padding:.7rem 1rem;display:flex;align-items:center;gap:.75rem;}
+.wf-dots{display:flex;gap:5px;}
+.wf-dot{width:9px;height:9px;border-radius:50%;background:var(--wf-block-med);}
+.wf-dot.r{background:rgba(220,80,80,.35);}.wf-dot.y{background:rgba(200,160,40,.35);}.wf-dot.g{background:rgba(60,180,100,.35);}
+.wf-address{flex:1;background:var(--wf-bg);border:1px solid var(--wf-border);border-radius:6px;padding:.28rem .75rem;font-family:"DM Mono",monospace;font-size:.62rem;color:var(--text-muted);display:flex;align-items:center;gap:.4rem;}
+.wf-lock{opacity:.4;font-size:.6rem;}
+.wf-nav-strip{display:flex;align-items:center;justify-content:space-between;padding:.65rem 1.25rem;border-bottom:1px solid var(--wf-border);background:var(--wf-card);}
+.wf-logo-block{width:52px;height:14px;background:var(--wf-block-med);border-radius:4px;}
+.wf-nav-items{display:flex;gap:1.25rem;}
+.wf-nav-item{height:7px;border-radius:3px;background:var(--wf-block);}
+.wf-nav-cta{height:24px;width:70px;border-radius:100px;background:var(--wf-accent);border:1px solid var(--wf-accent-b);}
+.wf-content{padding:1.25rem 1.5rem;}
+.wf-blk{background:var(--wf-block);border-radius:3px;}
+.wf-blk-med{background:var(--wf-block-med);border-radius:3px;}
+.wf-h{height:10px;background:var(--wf-block-med);border-radius:4px;margin-bottom:.75rem;}
+.wf-p{height:6px;background:var(--wf-block);border-radius:3px;margin-bottom:.4rem;}
+.wf-page-title-block{height:14px;border-radius:5px;background:var(--wf-block-med);margin-bottom:.4rem;}
+.wf-page-sub{height:8px;border-radius:3px;background:var(--wf-block);margin-bottom:1rem;}
+.wf-tab-row{display:flex;gap:.5rem;border-bottom:1px solid var(--wf-border);margin-bottom:1.25rem;}
+.wf-tab{height:28px;border-radius:6px 6px 0 0;padding:0 1rem;display:flex;align-items:center;background:var(--wf-block);}
+.wf-tab.active{background:var(--wf-accent);border:1px solid var(--wf-accent-b);border-bottom:none;}
+.wf-tab-text{height:6px;border-radius:3px;background:var(--wf-block-med);}
+.wf-tab.active .wf-tab-text{background:var(--wf-accent-b);}
+.wf-row{display:flex;gap:.75rem;margin-bottom:.75rem;align-items:center;}
+.wf-col{display:flex;flex-direction:column;gap:.35rem;}
+.wf-card{background:var(--wf-card);border:1px solid var(--wf-border);border-radius:10px;padding:1rem;}
+.wf-card.accent{border-color:var(--wf-accent-b);background:var(--wf-accent);}
+.wf-card.green{border-color:var(--wf-green-b);background:var(--wf-green);}
+.wf-card.gold{border-color:var(--wf-gold-b);background:var(--wf-gold);}
+.wf-card.blue{border-color:var(--wf-blue-b);background:var(--wf-blue);}
+.wf-card.red{border-color:var(--wf-red-b);background:var(--wf-red);}
+.wf-badge{height:18px;border-radius:100px;display:inline-flex;align-items:center;padding:0 .6rem;gap:.3rem;font-size:.6rem;}
+.wf-badge.accent{background:var(--wf-accent);border:1px solid var(--wf-accent-b);}
+.wf-badge.green{background:var(--wf-green);border:1px solid var(--wf-green-b);}
+.wf-badge.gold{background:var(--wf-gold);border:1px solid var(--wf-gold-b);}
+.wf-badge.blue{background:var(--wf-blue);border:1px solid var(--wf-blue-b);}
+.wf-badge.red{background:var(--wf-red);border:1px solid var(--wf-red-b);}
+.wf-badge-dot{width:5px;height:5px;border-radius:50%;}
+.wf-badge-text{height:5px;width:30px;border-radius:2px;background:var(--wf-block-med);}
+.wf-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
+.wf-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.85rem;}
+.wf-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;}
+.wf-sidebar-layout{display:grid;grid-template-columns:200px 1fr;gap:1rem;}
+.wf-sidebar{background:var(--wf-card);border:1px solid var(--wf-border);border-radius:10px;padding:.85rem;}
+.wf-sidebar-item{display:flex;align-items:center;gap:.5rem;padding:.4rem .5rem;border-radius:6px;margin-bottom:.3rem;}
+.wf-sidebar-item.active{background:var(--wf-accent);}
+.wf-sidebar-dot{width:4px;height:4px;border-radius:50%;background:var(--wf-block-med);flex-shrink:0;}
+.wf-sidebar-item.active .wf-sidebar-dot{background:var(--wf-accent-b);}
+.wf-sidebar-text{height:5px;border-radius:2px;background:var(--wf-block);}
+.wf-sidebar-item.active .wf-sidebar-text{background:var(--wf-accent-b);}
+.wf-progress-bar{height:6px;background:var(--wf-block);border-radius:100px;overflow:hidden;margin-top:.3rem;}
+.wf-progress-fill{height:100%;border-radius:100px;background:var(--wf-accent-b);}
+.wf-progress-fill.green{background:var(--wf-green-b);}
+.wf-progress-fill.gold{background:var(--wf-gold-b);}
+.wf-checkbox{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--wf-block-med);flex-shrink:0;}
+.wf-checkbox.checked{background:var(--wf-accent-b);border-color:var(--wf-accent-b);}
+.wf-table{width:100%;border-collapse:collapse;}
+.wf-table th,.wf-table td{padding:.5rem .75rem;border-bottom:1px solid var(--wf-border);vertical-align:middle;}
+.wf-table th{background:var(--wf-bg);}
+.wf-table .wf-cell{height:6px;border-radius:2px;background:var(--wf-block);}
+.wf-table .wf-cell-med{height:6px;border-radius:2px;background:var(--wf-block-med);}
+.wf-btn{height:28px;border-radius:6px;background:var(--wf-accent);border:1px solid var(--wf-accent-b);}
+.wf-btn.ghost{background:transparent;border-color:var(--wf-border);}
+.wf-btn.green{background:var(--wf-green);border-color:var(--wf-green-b);}
+.wf-toggle-switch{width:28px;height:16px;border-radius:100px;background:var(--wf-accent);border:1px solid var(--wf-accent-b);flex-shrink:0;}
+.wf-toggle-switch.off{background:var(--wf-block);border-color:var(--wf-border);}
+.wf-step-flow{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin:1rem 0;}
+.wf-step-node{background:var(--wf-accent);border:1px solid var(--wf-accent-b);border-radius:8px;padding:.4rem .85rem;display:flex;align-items:center;gap:.35rem;}
+.wf-step-text{height:6px;border-radius:2px;background:var(--wf-accent-b);}
+.wf-step-arrow{color:var(--wf-accent-b);font-size:.8rem;opacity:.6;}
+.case-footer{background:var(--bg-surface);border-top:.5px solid var(--border);padding:3rem 4rem;text-align:center;transition:background .3s;}
+.case-footer-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.88rem;color:var(--terra);text-decoration:none;border:1px solid var(--accent-border);border-radius:100px;padding:.7rem 1.5rem;transition:background .2s;}
+.case-footer-link:hover{background:var(--accent-dim);}
+.fade-in{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+@media(max-width:900px){nav{padding:1rem 1.5rem;}.section{padding:3.5rem 1.5rem;}.case-hero{padding:7rem 1.5rem 4rem;}.outcome-grid,.reflection-cols,.wf-grid-2,.wf-grid-3,.wf-grid-4,.wf-sidebar-layout{grid-template-columns:1fr;}.case-footer{padding:3rem 1.5rem;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="Tushar Bisen" class="nav-logo-img"></a>
+  <ul class="nav-right">
+    <li><a href="index.html#work" class="nav-back-btn"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M8 10L4 6l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>All Work</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li style="display:flex;align-items:center;"><button class="theme-toggle" id="themeToggle" aria-label="Toggle"><span class="toggle-icon icon-sun">☀</span><span class="toggle-icon icon-moon">☽</span></button></li>
+    <li><a href="https://drive.google.com/file/d/1Kaz6TTUsaSzprqq8V6EZdSK_-AIRaRlG/view?usp=sharing" target="_blank" class="nav-resume">Resume</a></li>
+  </ul>
+</nav>
+
+<section class="case-hero">
+  <div class="hero-orb"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="h-tag accent">FactSet · ESG Hub</span>
+      <span class="h-tag">Solo UX Designer</span>
+      <span class="h-tag">Feature Design</span>
+      <span class="h-tag">2023–2024</span>
+    </div>
+    <h1 class="case-title">Boosting Efficiency with<br><em>PreCalculated ESG Data</em></h1>
+    <p class="hero-sub">ESG data tables in FactSet required heavy backend processing before results appeared — leaving users staring at an indefinite loader with no control, no visibility, and no way to multitask. We changed that.</p>
+    <div class="hero-stats">
+      <div><div class="hstat-val">↓10<em>min</em></div><div class="hstat-lbl">Idle Time Reduced</div></div>
+      <div><div class="hstat-val">+30<em>%</em></div><div class="hstat-lbl">Workflow Efficiency</div></div>
+      <div><div class="hstat-val">4</div><div class="hstat-lbl">States Designed</div></div>
+      <div><div class="hstat-val">Solo</div><div class="hstat-lbl">UX Designer</div></div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+<section class="section fade-in">
+  <div class="section-inner">
+    <p class="section-label">Overview</p>
+    <h2 class="section-title">The problem with waiting</h2>
+    <p class="body-text">Within FactSet's ESG Hub, data tables for portfolios and benchmarks require significant backend processing before results can be displayed. These calculations involve <strong>fetching, validating, and transforming data from multiple sources</strong> — often taking several minutes.</p>
+    <p class="body-text">Users had zero visibility into this process. They were stuck watching an indefinite spinner, unable to navigate away without restarting the entire calculation from scratch. In a platform where analysts manage multiple portfolios simultaneously, this was a critical productivity bottleneck.</p>
+    <div class="callout">
+      <p>If a user navigated away mid-calculation, the entire process restarted — <strong>wasting minutes of compute time and creating deep frustration</strong> for power users who needed to work across multiple portfolios in a single session.</p>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+<section class="section fade-in" style="background:var(--bg-surface);">
+  <div class="section-inner">
+    <p class="section-label">Research</p>
+    <h2 class="section-title">What users were telling us</h2>
+    <p class="body-text">As the sole designer, I led research through user interviews, session observations, and direct feedback from ESG Hub power users to understand the depth and frequency of the problem.</p>
+    <div class="insight-grid">
+      <div class="insight-card"><div class="insight-icon">⏳</div><p class="insight-title">Forced idle time</p><p class="insight-desc">Users sat unproductively while data loaded — unable to work on other tables or portfolios without losing their calculation progress.</p></div>
+      <div class="insight-card"><div class="insight-icon">🔄</div><p class="insight-title">Restart loops</p><p class="insight-desc">Any accidental navigation reset the calculation entirely. Users who managed multiple portfolios hit this repeatedly in a single session.</p></div>
+      <div class="insight-card"><div class="insight-icon">👻</div><p class="insight-title">No system feedback</p><p class="insight-desc">The indefinite spinner gave no indication of progress, estimated time, or whether the calculation had stalled or was still running.</p></div>
+      <div class="insight-card"><div class="insight-icon">📊</div><p class="insight-title">Power user demand</p><p class="insight-desc">ESG Hub power users explicitly asked for parallel workflows — the ability to trigger multiple calculations and monitor their progress simultaneously.</p></div>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">"I can't do anything while it loads. I'll switch to another tab and come back to find it reset. I've started just leaving it running overnight."</p>
+      <p class="quote-attr">— ESG Hub Power User (research interview)</p>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+<section class="section fade-in">
+  <div class="section-inner">
+    <p class="section-label">Problem Framing</p>
+    <h2 class="section-title">Design challenges</h2>
+    <div class="hmw"><p>"How might we let users initiate data calculations without being blocked — while giving them full visibility into progress so they can multitask with confidence?"</p></div>
+    <div class="insight-grid">
+      <div class="insight-card"><p class="insight-title">Reduce opaque loading</p><p class="insight-desc">Replace the indefinite spinner with meaningful, real-time progress visibility across all active calculations.</p></div>
+      <div class="insight-card"><p class="insight-title">Enable async workflows</p><p class="insight-desc">Let users trigger pre-calculations in the background and navigate freely without losing their work.</p></div>
+      <div class="insight-card"><p class="insight-title">Surface system state</p><p class="insight-desc">Make the system's calculation status legible at a glance — what's calculating, what's ready, what needs attention.</p></div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+<section class="section fade-in" style="background:var(--bg-surface);">
+  <div class="section-inner">
+    <p class="section-label">Design Process</p>
+    <h2 class="section-title">How we approached it</h2>
+    <div class="process-steps">
+      <div class="process-step"><div class="step-num">01</div><div><p class="step-title">Research & Problem Definition</p><p class="step-desc">Conducted user interviews and session observations with ESG power users. Mapped the current-state calculation workflow and identified all failure points, user workarounds, and unmet expectations.</p></div></div>
+      <div class="process-step"><div class="step-num">02</div><div><p class="step-title">Concept Exploration</p><p class="step-desc">Explored multiple approaches — including inline progress states, a global notification bar, and a dedicated pre-calculation panel. Evaluated each against the core goals of discoverability, control, and minimal workflow disruption.</p></div></div>
+      <div class="process-step"><div class="step-num">03</div><div><p class="step-title">Defining the 4 States</p><p class="step-desc">Designed a clear state machine for each table: Not Loaded → Data Expired → Calculating → Calculated. Each state communicates system status and surfaces the right action at the right time.</p></div></div>
+      <div class="process-step"><div class="step-num">04</div><div><p class="step-title">Stakeholder Validation & Iteration</p><p class="step-desc">Ran design reviews with Product, Engineering, and senior ESG users. Refined the panel layout, state transitions, and action hierarchy across 3 major iterations.</p></div></div>
+      <div class="process-step"><div class="step-num">05</div><div><p class="step-title">Engineering Handoff</p><p class="step-desc">Delivered annotated Figma specs including all states, edge cases, and loading patterns. Stayed closely involved during build to ensure fidelity and address implementation questions in real time.</p></div></div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+<section class="section wf-section fade-in">
+  <div class="section-inner" style="max-width:1000px;">
+    <p class="section-label">Design Explorations</p>
+    <h2 class="section-title">Key screens & states</h2>
+    <p class="body-text" style="margin-bottom:.5rem;">Wireframe representations of the Pre-Calculate Aggregates panel across its 4 core states. Actual high-fidelity screens are under NDA.</p>
+    <div class="wireframe-stack">
+
+      <div>
+        <p class="wf-item-label">Screen 01 — Pre-Calculate Panel: Not Loaded State</p>
+        <p class="wf-item-caption">Users open the Pre-Calculate Aggregates panel, select portfolios and benchmarks, choose which tables to generate, and initiate the calculation — without navigating to each table individually.</p>
+        <div class="wf-browser">
+          <div class="wf-chrome"><div class="wf-dots"><div class="wf-dot r"></div><div class="wf-dot y"></div><div class="wf-dot g"></div></div><div class="wf-address"><span class="wf-lock">🔒</span>factset.com / esg-hub / pre-calculate</div></div>
+          <div class="wf-content">
+            <div class="wf-row" style="justify-content:space-between;margin-bottom:1rem;">
+              <div><div class="wf-h" style="width:180px;margin-bottom:.3rem;"></div><div class="wf-p" style="width:260px;"></div></div>
+              <div style="display:flex;gap:.5rem;align-items:center;"><div class="wf-btn ghost" style="width:60px;"></div><div class="wf-btn" style="width:28px;height:28px;border-radius:50%;"></div></div>
+            </div>
+            <div class="wf-card" style="margin-bottom:.75rem;">
+              <div class="wf-row" style="margin-bottom:.75rem;">
+                <div style="flex:1;"><div class="wf-h" style="width:40%;margin-bottom:0;height:8px;"></div></div>
+                <div style="display:flex;gap:.5rem;"><div style="width:22px;height:22px;border-radius:5px;background:var(--wf-block);"></div><div style="width:22px;height:22px;border-radius:5px;background:var(--wf-block);"></div></div>
+              </div>
+              <div class="wf-row" style="background:var(--wf-bg);border:1px solid var(--wf-border);border-radius:6px;padding:.5rem .75rem;margin-bottom:.75rem;">
+                <div style="font-size:.65rem;color:var(--wf-text);margin-right:.5rem;">Selected Benchmark:</div>
+                <div class="wf-badge accent"><div class="wf-badge-text" style="width:80px;"></div><div style="width:10px;height:10px;border-radius:50%;background:var(--wf-accent-b);font-size:.5rem;display:flex;align-items:center;justify-content:center;">×</div></div>
+              </div>
+              <table class="wf-table" style="font-size:.7rem;">
+                <thead><tr><th><div class="wf-cell-med" style="width:20px;"></div></th><th><div class="wf-cell-med" style="width:80px;"></div></th><th><div class="wf-cell-med" style="width:60px;"></div></th><th><div class="wf-cell-med" style="width:80px;"></div></th><th><div class="wf-cell-med" style="width:40px;"></div></th></tr></thead>
+                <tbody>
+                  <tr><td colspan="5" style="padding:.3rem .75rem;"><div style="display:flex;align-items:center;gap:.4rem;"><div style="font-size:.6rem;color:var(--wf-accent-b);font-weight:600;">▾ TruValue</div></div></td></tr>
+                  <tr><td><div class="wf-checkbox"></div></td><td><div class="wf-cell" style="width:110px;"></div></td><td><div class="wf-badge" style="background:var(--wf-block);border:1px solid var(--wf-border);"><div class="wf-badge-text" style="width:50px;"></div></div></td><td><div class="wf-cell" style="width:90px;"></div></td><td></td></tr>
+                  <tr><td><div class="wf-checkbox"></div></td><td><div class="wf-cell" style="width:80px;"></div></td><td><div class="wf-badge" style="background:var(--wf-block);border:1px solid var(--wf-border);"><div class="wf-badge-text" style="width:50px;"></div></div></td><td><div class="wf-cell" style="width:90px;"></div></td><td></td></tr>
+                  <tr><td><div class="wf-checkbox"></div></td><td><div class="wf-cell" style="width:120px;"></div></td><td><div class="wf-badge" style="background:var(--wf-block);border:1px solid var(--wf-border);"><div class="wf-badge-text" style="width:50px;"></div></div></td><td><div class="wf-cell" style="width:90px;"></div></td><td></td></tr>
+                </tbody>
+              </table>
+              <div class="wf-row" style="justify-content:space-between;margin-top:1rem;">
+                <div style="display:flex;align-items:center;gap:.4rem;"><div style="width:14px;height:14px;border-radius:3px;background:var(--wf-block);"></div><div class="wf-p" style="width:40px;margin:0;"></div></div>
+                <div class="wf-btn" style="width:80px;height:30px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="wf-item-label">Screen 02 — Calculating State (in progress)</p>
+        <p class="wf-item-caption">Once triggered, each selected table transitions to a "Calculating" state with a progress indicator. Users can freely navigate away — the calculation continues in the background.</p>
+        <div class="wf-browser">
+          <div class="wf-chrome"><div class="wf-dots"><div class="wf-dot r"></div><div class="wf-dot y"></div><div class="wf-dot g"></div></div><div class="wf-address"><span class="wf-lock">🔒</span>factset.com / esg-hub / pre-calculate</div></div>
+          <div class="wf-content">
+            <div class="wf-card" style="margin-bottom:.75rem;">
+              <div class="wf-row" style="margin-bottom:.75rem;">
+                <div style="flex:1;"><div class="wf-h" style="width:40%;margin-bottom:0;height:8px;"></div></div>
+                <div style="display:flex;gap:.5rem;"><div style="width:22px;height:22px;border-radius:5px;background:var(--wf-block);"></div><div style="width:22px;height:22px;border-radius:5px;background:var(--wf-block);"></div></div>
+              </div>
+              <div class="wf-row" style="background:var(--wf-bg);border:1px solid var(--wf-border);border-radius:6px;padding:.5rem .75rem;margin-bottom:.75rem;">
+                <div style="font-size:.65rem;color:var(--wf-text);margin-right:.5rem;">Selected Benchmark:</div>
+                <div class="wf-badge accent"><div class="wf-badge-text" style="width:80px;"></div></div>
+              </div>
+              <table class="wf-table" style="font-size:.7rem;">
+                <thead><tr><th></th><th><div class="wf-cell-med" style="width:80px;"></div></th><th><div class="wf-cell-med" style="width:60px;"></div></th><th><div class="wf-cell-med" style="width:80px;"></div></th><th></th></tr></thead>
+                <tbody>
+                  <tr><td colspan="5" style="padding:.3rem .75rem;"><div style="font-size:.6rem;color:var(--wf-accent-b);font-weight:600;">▾ TruValue</div></td></tr>
+                  <tr><td><div class="wf-checkbox checked"></div></td><td><div class="wf-cell-med" style="width:110px;"></div></td><td><div class="wf-badge gold"><div class="wf-badge-dot" style="background:var(--wf-gold-b);animation:pulse 1s infinite;"></div><div class="wf-badge-text" style="width:55px;background:var(--wf-gold-b);"></div></div></td><td><div class="wf-cell" style="width:90px;"></div></td><td></td></tr>
+                  <tr><td><div class="wf-checkbox checked"></div></td><td><div class="wf-cell-med" style="width:80px;"></div></td><td><div class="wf-badge gold"><div class="wf-badge-dot" style="background:var(--wf-gold-b);"></div><div class="wf-badge-text" style="width:55px;background:var(--wf-gold-b);"></div></div></td><td><div class="wf-cell" style="width:90px;"></div></td><td></td></tr>
+                  <tr><td><div class="wf-checkbox checked"></div></td><td><div class="wf-cell-med" style="width:120px;"></div></td><td><div class="wf-badge gold"><div class="wf-badge-dot" style="background:var(--wf-gold-b);"></div><div class="wf-badge-text" style="width:55px;background:var(--wf-gold-b);"></div></div></td><td><div class="wf-cell" style="width:90px;"></div></td><td></td></tr>
+                </tbody>
+              </table>
+              <div style="margin-top:.75rem;padding:.65rem .75rem;background:var(--wf-gold);border:1px solid var(--wf-gold-b);border-radius:8px;font-size:.65rem;color:var(--wf-text);">
+                <div class="wf-p" style="width:200px;margin-bottom:.35rem;"></div>
+                <div class="wf-progress-bar"><div class="wf-progress-fill gold" style="width:45%;"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="wf-item-label">Screen 03 — Calculated State (ready to view)</p>
+        <p class="wf-item-caption">Once calculations complete, tables transition to "Calculated" — with a direct link to navigate to each table. Users can come back at their own pace without any data loss.</p>
+        <div class="wf-browser">
+          <div class="wf-chrome"><div class="wf-dots"><div class="wf-dot r"></div><div class="wf-dot y"></div><div class="wf-dot g"></div></div><div class="wf-address"><span class="wf-lock">🔒</span>factset.com / esg-hub / pre-calculate</div></div>
+          <div class="wf-content">
+            <div class="wf-card">
+              <div class="wf-row" style="margin-bottom:.75rem;">
+                <div style="flex:1;"><div class="wf-h" style="width:40%;margin-bottom:0;height:8px;"></div></div>
+              </div>
+              <div class="wf-row" style="background:var(--wf-bg);border:1px solid var(--wf-border);border-radius:6px;padding:.5rem .75rem;margin-bottom:.75rem;">
+                <div style="font-size:.65rem;color:var(--wf-text);margin-right:.5rem;">Selected Benchmark:</div>
+                <div class="wf-badge accent"><div class="wf-badge-text" style="width:80px;"></div></div>
+              </div>
+              <table class="wf-table" style="font-size:.7rem;">
+                <thead><tr><th></th><th><div class="wf-cell-med" style="width:80px;"></div></th><th><div class="wf-cell-med" style="width:60px;"></div></th><th><div class="wf-cell-med" style="width:80px;"></div></th><th><div class="wf-cell-med" style="width:40px;"></div></th></tr></thead>
+                <tbody>
+                  <tr><td colspan="5" style="padding:.3rem .75rem;"><div style="font-size:.6rem;color:var(--wf-accent-b);font-weight:600;">▾ TruValue</div></td></tr>
+                  <tr><td><div class="wf-checkbox"></div></td><td><div class="wf-cell-med" style="width:110px;"></div></td><td><div class="wf-badge green"><div class="wf-badge-dot" style="background:var(--wf-green-b);"></div><div class="wf-badge-text" style="width:55px;background:var(--wf-green-b);"></div></div></td><td><div class="wf-cell" style="width:90px;"></div></td><td><div style="width:18px;height:18px;border-radius:4px;background:var(--wf-accent);border:1px solid var(--wf-accent-b);"></div></td></tr>
+                  <tr><td><div class="wf-checkbox"></div></td><td><div class="wf-cell-med" style="width:80px;"></div></td><td><div class="wf-badge green"><div class="wf-badge-dot" style="background:var(--wf-green-b);"></div><div class="wf-badge-text" style="width:55px;background:var(--wf-green-b);"></div></div></td><td><div class="wf-cell" style="width:90px;"></div></td><td><div style="width:18px;height:18px;border-radius:4px;background:var(--wf-accent);border:1px solid var(--wf-accent-b);"></div></td></tr>
+                  <tr><td><div class="wf-checkbox"></div></td><td><div class="wf-cell-med" style="width:120px;"></div></td><td><div class="wf-badge green"><div class="wf-badge-dot" style="background:var(--wf-green-b);"></div><div class="wf-badge-text" style="width:55px;background:var(--wf-green-b);"></div></div></td><td><div class="wf-cell" style="width:90px;"></div></td><td><div style="width:18px;height:18px;border-radius:4px;background:var(--wf-accent);border:1px solid var(--wf-accent-b);"></div></td></tr>
+                </tbody>
+              </table>
+              <div style="margin-top:.75rem;padding:.65rem .75rem;background:var(--wf-green);border:1px solid var(--wf-green-b);border-radius:8px;font-size:.65rem;color:var(--wf-text);">
+                <div class="wf-p" style="width:180px;margin-bottom:0;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<hr class="divider">
+<section class="section fade-in">
+  <div class="section-inner">
+    <p class="section-label">Outcomes</p>
+    <h2 class="section-title">Impact</h2>
+    <div class="outcome-grid">
+      <div class="outcome-card hi"><div class="outcome-icon">⏱</div><p class="outcome-title">↓10 min idle time per session</p><p class="outcome-desc">Users no longer needed to sit blocked while data loaded. Pre-calculation freed them to work on other portfolios or analysis tasks in parallel.</p></div>
+      <div class="outcome-card hi"><div class="outcome-icon">⚡</div><p class="outcome-title">+30% workflow efficiency</p><p class="outcome-desc">Enabling asynchronous data preparation across multiple portfolios dramatically improved how much users could accomplish in a single session.</p></div>
+      <div class="outcome-card"><div class="outcome-icon">🎛</div><p class="outcome-title">Improved user control</p><p class="outcome-desc">Progress tracking and non-blocking UX gave users a sense of agency over the system — a key shift from frustration to confidence.</p></div>
+      <div class="outcome-card"><div class="outcome-icon">📈</div><p class="outcome-title">Boosted perceived reliability</p><p class="outcome-desc">Visibility into system activity significantly improved users' perception of ESG Hub's speed and reliability, even when actual compute time didn't change.</p></div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+<section class="section fade-in" style="background:var(--bg-surface);">
+  <div class="section-inner">
+    <p class="section-label">Reflection</p>
+    <h2 class="section-title">Key learnings</h2>
+    <div class="reflection-cols">
+      <div class="refl-card worked">
+        <p class="refl-heading">What worked well</p>
+        <ul class="refl-list">
+          <li>Designing the full state machine (4 states) first ensured every transition felt intentional and complete</li>
+          <li>Power user interviews early on grounded the solution in real frustration — not assumed pain</li>
+          <li>Keeping the feature as a panel (not a separate page) minimised context-switching</li>
+          <li>Close engineering collaboration prevented late-stage scope changes</li>
+        </ul>
+      </div>
+      <div class="refl-card learned">
+        <p class="refl-heading">What I'd do differently</p>
+        <ul class="refl-list">
+          <li>Establish baseline metrics (avg idle time, restart frequency) before launch to better quantify the improvement</li>
+          <li>Design a notification system so users know their calculations are ready without returning to check</li>
+          <li>Explore onboarding for new users who may not discover the pre-calculate feature organically</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="case-footer"><a href="index.html" class="case-footer-link"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Back to all case studies</a></div>
+<script>
+  const htmlEl=document.documentElement;
+  const toggleBtn=document.getElementById('themeToggle');
+  toggleBtn.addEventListener('click',()=>{const next=htmlEl.getAttribute('data-theme')==='dark'?'light':'dark';htmlEl.setAttribute('data-theme',next);localStorage.setItem('tb-theme',next);});
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.06});
+  document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Driving ESG Select Adoption through Seamless Upselling — Case Study | Tushar Bisen</title>
+<link rel="icon" type="image/png" href="logo.png">
+<script>(function(){var t=localStorage.getItem("tb-theme")||"dark";document.documentElement.setAttribute("data-theme",t);})();</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg-page:#FAF7F2;--bg-surface:#F0EBE1;--bg-card:#FFFFF8;--bg-nav:rgba(250,247,242,0.9);
+  --text-primary:#2C1F14;--text-secondary:#6B5040;--text-muted:#A8896E;
+  --border:rgba(61,43,31,0.1);--border-med:rgba(61,43,31,0.18);
+  --terra:#C4623A;--terra-light:#E8825E;--terra-pale:#FAE8DF;--brown-deep:#2E1E12;
+  --toggle-bg:#E8DDD0;--toggle-knob:#fff;
+  --accent:#C4623A;--accent-dim:rgba(196,98,58,0.08);--accent-border:rgba(196,98,58,0.22);
+  --wf-bg:#F5F0E8;--wf-card:#FFFFF8;--wf-border:rgba(61,43,31,0.12);
+  --wf-block:rgba(61,43,31,0.08);--wf-block-med:rgba(61,43,31,0.14);
+  --wf-accent:rgba(196,98,58,0.12);--wf-accent-b:rgba(196,98,58,0.28);
+  --wf-green:rgba(60,160,100,0.12);--wf-green-b:rgba(60,160,100,0.32);
+  --wf-gold:rgba(180,130,40,0.1);--wf-gold-b:rgba(180,130,40,0.28);
+  --wf-blue:rgba(60,100,180,0.1);--wf-blue-b:rgba(60,100,180,0.28);
+  --wf-red:rgba(200,60,60,0.1);--wf-red-b:rgba(200,60,60,0.28);
+  --wf-text:rgba(61,43,31,0.4);--insight-bg:#F5F0E8;--quote-border:rgba(196,98,58,0.25);
+}
+[data-theme="dark"] {
+  --bg-page:#141010;--bg-surface:#1C1714;--bg-card:#211C18;--bg-nav:rgba(18,14,12,0.92);
+  --text-primary:#F0E8DF;--text-secondary:#B09A88;--text-muted:#7A6558;
+  --border:rgba(240,220,200,0.08);--border-med:rgba(240,220,200,0.14);
+  --terra:#E0784E;--terra-light:#F0997A;--terra-pale:rgba(224,120,78,0.12);--brown-deep:#0C0908;
+  --toggle-bg:#3A2E26;--toggle-knob:#E0784E;
+  --accent:#E0784E;--accent-dim:rgba(224,120,78,0.1);--accent-border:rgba(224,120,78,0.25);
+  --wf-bg:#1A1614;--wf-card:#211C18;--wf-border:rgba(240,220,200,0.1);
+  --wf-block:rgba(240,220,200,0.06);--wf-block-med:rgba(240,220,200,0.12);
+  --wf-accent:rgba(224,120,78,0.1);--wf-accent-b:rgba(224,120,78,0.28);
+  --wf-green:rgba(78,207,160,0.08);--wf-green-b:rgba(78,207,160,0.28);
+  --wf-gold:rgba(212,168,67,0.08);--wf-gold-b:rgba(212,168,67,0.28);
+  --wf-blue:rgba(80,130,220,0.08);--wf-blue-b:rgba(80,130,220,0.28);
+  --wf-red:rgba(220,80,80,0.08);--wf-red-b:rgba(220,80,80,0.28);
+  --wf-text:rgba(240,220,200,0.28);--insight-bg:#1C1714;--quote-border:rgba(224,120,78,0.22);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text-primary);line-height:1.7;overflow-x:hidden;transition:background .3s,color .3s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 4rem;background:var(--bg-nav);backdrop-filter:blur(16px);border-bottom:.5px solid var(--border);transition:background .3s;}
+.nav-logo-img{height:48px;width:auto;vertical-align:middle;display:block;transition:filter .3s;}
+[data-theme="dark"] .nav-logo-img{filter:invert(1) brightness(2);}
+.nav-right{display:flex;gap:2rem;list-style:none;align-items:center;}
+.nav-right a{font-size:.78rem;font-weight:400;letter-spacing:.07em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;transition:color .2s;}
+.nav-right a:hover{color:var(--terra);}
+.nav-back-btn{display:flex;align-items:center;gap:.4rem;}
+.nav-back-btn svg{transition:transform .2s;}
+.nav-back-btn:hover svg{transform:translateX(-3px);}
+.nav-resume{padding:.48rem 1.15rem;background:var(--terra)!important;color:#fff!important;border-radius:100px;transition:opacity .2s!important;}
+.nav-resume:hover{opacity:.85!important;}
+.theme-toggle{width:42px;height:24px;border-radius:100px;background:var(--toggle-bg);border:none;cursor:pointer;position:relative;flex-shrink:0;transition:background .3s;outline:none;}
+.theme-toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--toggle-knob);transition:transform .3s cubic-bezier(.34,1.56,.64,1),background .3s;}
+[data-theme="dark"] .theme-toggle::after{transform:translateX(18px);}
+.toggle-icon{position:absolute;top:50%;font-size:10px;line-height:1;transform:translateY(-50%);pointer-events:none;transition:opacity .2s;}
+.icon-sun{left:5px;opacity:1;}.icon-moon{right:4px;opacity:0;}
+[data-theme="dark"] .icon-sun{opacity:0;}[data-theme="dark"] .icon-moon{opacity:1;}
+.case-hero{min-height:72vh;display:flex;flex-direction:column;justify-content:flex-end;padding:9rem 4rem 5rem;position:relative;overflow:hidden;background:var(--bg-surface);transition:background .3s;}
+.hero-orb{position:absolute;width:600px;height:600px;border-radius:50%;top:-150px;right:-80px;pointer-events:none;background:radial-gradient(circle,rgba(196,98,58,.08) 0%,transparent 68%);transition:background .3s;}
+[data-theme="dark"] .hero-orb{background:radial-gradient(circle,rgba(224,120,78,.1) 0%,transparent 68%);}
+.hero-inner{position:relative;z-index:1;max-width:920px;}
+.hero-eyebrow{display:flex;align-items:center;gap:.6rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.h-tag{padding:.28rem .85rem;border-radius:100px;font-size:.7rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;border:1px solid var(--border-med);color:var(--text-muted);transition:all .3s;}
+.h-tag.accent{border-color:var(--accent-border);color:var(--accent);background:var(--accent-dim);}
+h1.case-title{font-family:'Lora',serif;font-size:clamp(2.4rem,5vw,4.2rem);font-weight:400;line-height:1.1;letter-spacing:-.025em;color:var(--text-primary);margin-bottom:1.25rem;transition:color .3s;}
+h1.case-title em{font-style:italic;color:var(--terra);}
+.hero-sub{font-size:1rem;font-weight:300;color:var(--text-secondary);max-width:620px;line-height:1.8;margin-bottom:2.5rem;}
+.hero-stats{display:flex;gap:3rem;flex-wrap:wrap;border-top:.5px solid var(--border);padding-top:2rem;}
+.hstat-val{font-family:'Lora',serif;font-size:2rem;font-weight:400;color:var(--text-primary);line-height:1;}
+.hstat-val em{font-style:normal;color:var(--terra);font-size:1.3rem;}
+.hstat-lbl{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-top:.2rem;}
+.section{padding:5rem 4rem;transition:background .3s;}
+.section-inner{max-width:880px;margin:0 auto;}
+.section-label{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terra);font-weight:500;margin-bottom:2rem;display:flex;align-items:center;gap:.6rem;}
+.section-label::after{content:'';display:block;width:40px;height:1px;background:var(--terra);opacity:.35;}
+h2.section-title{font-family:'Lora',serif;font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:400;letter-spacing:-.02em;color:var(--text-primary);margin-bottom:1.25rem;line-height:1.25;}
+.body-text{font-size:.97rem;font-weight:300;color:var(--text-secondary);line-height:1.85;margin-bottom:1.1rem;}
+.body-text strong{color:var(--text-primary);font-weight:500;}
+.divider{border:none;border-top:.5px solid var(--border);margin:0;}
+.callout{background:var(--bg-card);border:1px solid var(--border-med);border-left:3px solid var(--terra);border-radius:12px;padding:1.5rem 1.75rem;margin:1.75rem 0;transition:background .3s,border-color .3s;}
+.callout p{font-size:.97rem;font-weight:300;color:var(--text-secondary);line-height:1.8;margin:0;}
+.callout.green{border-left-color:#3CA064;}.callout p strong{color:var(--text-primary);}
+.hmw{background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:12px;padding:1.5rem 1.75rem;margin:1.75rem 0;}
+.hmw p{font-size:.97rem;font-weight:400;color:var(--text-primary);line-height:1.8;margin:0;font-style:italic;}
+.insight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.75rem 0;}
+.insight-card{background:var(--insight-bg);border:1px solid var(--border);border-radius:12px;padding:1.4rem;transition:background .3s,border-color .3s;}
+.insight-icon{font-size:1.3rem;margin-bottom:.6rem;}
+.insight-title{font-size:.88rem;font-weight:500;color:var(--text-primary);margin-bottom:.35rem;}
+.insight-desc{font-size:.82rem;font-weight:300;color:var(--text-secondary);line-height:1.65;}
+.quote-block{border-left:2px solid var(--quote-border);padding:.75rem 1.5rem;margin:1.75rem 0;}
+.quote-text{font-family:'Lora',serif;font-size:1.05rem;font-style:italic;color:var(--text-secondary);line-height:1.75;margin-bottom:.4rem;}
+.quote-attr{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);}
+.process-steps{margin:1.75rem 0;}
+.process-step{display:flex;gap:1.5rem;padding:1.4rem 0;border-bottom:.5px solid var(--border);}
+.process-step:last-child{border-bottom:none;}
+.step-num{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--terra);opacity:.6;width:28px;flex-shrink:0;padding-top:.2rem;}
+.step-title{font-size:.93rem;font-weight:500;color:var(--text-primary);margin-bottom:.35rem;}
+.step-desc{font-size:.85rem;font-weight:300;color:var(--text-secondary);line-height:1.7;}
+.outcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.75rem 0;}
+.outcome-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.4rem;transition:background .3s;}
+.outcome-card.hi{border-color:var(--accent-border);background:var(--accent-dim);}
+.outcome-icon{font-size:1.4rem;margin-bottom:.6rem;}
+.outcome-title{font-size:.9rem;font-weight:500;color:var(--text-primary);margin-bottom:.3rem;}
+.outcome-desc{font-size:.82rem;font-weight:300;color:var(--text-secondary);line-height:1.65;}
+.reflection-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.5rem;}
+.refl-card{padding:1.4rem;border-radius:12px;border:1px solid var(--border);}
+.refl-card.worked{border-color:var(--accent-border);}
+.refl-heading{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-bottom:.75rem;color:var(--terra);}
+.refl-card.learned .refl-heading{color:var(--text-muted);}
+.refl-list{list-style:none;display:flex;flex-direction:column;gap:.55rem;}
+.refl-list li{font-size:.85rem;font-weight:300;color:var(--text-secondary);line-height:1.6;padding-left:1rem;position:relative;}
+.refl-list li::before{content:"—";position:absolute;left:0;color:var(--text-muted);}
+.wf-section{background:var(--bg-surface);transition:background .3s;}
+.wireframe-stack{display:flex;flex-direction:column;gap:4rem;margin-top:2rem;}
+.wf-item-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);font-weight:500;margin-bottom:.4rem;}
+.wf-item-caption{font-size:.85rem;color:var(--text-muted);font-weight:300;line-height:1.6;margin-bottom:1.25rem;max-width:600px;}
+.wf-browser{background:var(--wf-card);border:1px solid var(--wf-border);border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.06);transition:background .3s,border-color .3s;}
+.wf-chrome{background:var(--wf-bg);border-bottom:1px solid var(--wf-border);padding:.7rem 1rem;display:flex;align-items:center;gap:.75rem;}
+.wf-dots{display:flex;gap:5px;}
+.wf-dot{width:9px;height:9px;border-radius:50%;background:var(--wf-block-med);}
+.wf-dot.r{background:rgba(220,80,80,.35);}.wf-dot.y{background:rgba(200,160,40,.35);}.wf-dot.g{background:rgba(60,180,100,.35);}
+.wf-address{flex:1;background:var(--wf-bg);border:1px solid var(--wf-border);border-radius:6px;padding:.28rem .75rem;font-family:"DM Mono",monospace;font-size:.62rem;color:var(--text-muted);display:flex;align-items:center;gap:.4rem;}
+.wf-lock{opacity:.4;font-size:.6rem;}
+.wf-nav-strip{display:flex;align-items:center;justify-content:space-between;padding:.65rem 1.25rem;border-bottom:1px solid var(--wf-border);background:var(--wf-card);}
+.wf-logo-block{width:52px;height:14px;background:var(--wf-block-med);border-radius:4px;}
+.wf-nav-items{display:flex;gap:1.25rem;}
+.wf-nav-item{height:7px;border-radius:3px;background:var(--wf-block);}
+.wf-nav-cta{height:24px;width:70px;border-radius:100px;background:var(--wf-accent);border:1px solid var(--wf-accent-b);}
+.wf-content{padding:1.25rem 1.5rem;}
+.wf-blk{background:var(--wf-block);border-radius:3px;}
+.wf-blk-med{background:var(--wf-block-med);border-radius:3px;}
+.wf-h{height:10px;background:var(--wf-block-med);border-radius:4px;margin-bottom:.75rem;}
+.wf-p{height:6px;background:var(--wf-block);border-radius:3px;margin-bottom:.4rem;}
+.wf-page-title-block{height:14px;border-radius:5px;background:var(--wf-block-med);margin-bottom:.4rem;}
+.wf-page-sub{height:8px;border-radius:3px;background:var(--wf-block);margin-bottom:1rem;}
+.wf-tab-row{display:flex;gap:.5rem;border-bottom:1px solid var(--wf-border);margin-bottom:1.25rem;}
+.wf-tab{height:28px;border-radius:6px 6px 0 0;padding:0 1rem;display:flex;align-items:center;background:var(--wf-block);}
+.wf-tab.active{background:var(--wf-accent);border:1px solid var(--wf-accent-b);border-bottom:none;}
+.wf-tab-text{height:6px;border-radius:3px;background:var(--wf-block-med);}
+.wf-tab.active .wf-tab-text{background:var(--wf-accent-b);}
+.wf-row{display:flex;gap:.75rem;margin-bottom:.75rem;align-items:center;}
+.wf-col{display:flex;flex-direction:column;gap:.35rem;}
+.wf-card{background:var(--wf-card);border:1px solid var(--wf-border);border-radius:10px;padding:1rem;}
+.wf-card.accent{border-color:var(--wf-accent-b);background:var(--wf-accent);}
+.wf-card.green{border-color:var(--wf-green-b);background:var(--wf-green);}
+.wf-card.gold{border-color:var(--wf-gold-b);background:var(--wf-gold);}
+.wf-card.blue{border-color:var(--wf-blue-b);background:var(--wf-blue);}
+.wf-card.red{border-color:var(--wf-red-b);background:var(--wf-red);}
+.wf-badge{height:18px;border-radius:100px;display:inline-flex;align-items:center;padding:0 .6rem;gap:.3rem;font-size:.6rem;}
+.wf-badge.accent{background:var(--wf-accent);border:1px solid var(--wf-accent-b);}
+.wf-badge.green{background:var(--wf-green);border:1px solid var(--wf-green-b);}
+.wf-badge.gold{background:var(--wf-gold);border:1px solid var(--wf-gold-b);}
+.wf-badge.blue{background:var(--wf-blue);border:1px solid var(--wf-blue-b);}
+.wf-badge.red{background:var(--wf-red);border:1px solid var(--wf-red-b);}
+.wf-badge-dot{width:5px;height:5px;border-radius:50%;}
+.wf-badge-text{height:5px;width:30px;border-radius:2px;background:var(--wf-block-med);}
+.wf-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
+.wf-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.85rem;}
+.wf-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;}
+.wf-sidebar-layout{display:grid;grid-template-columns:200px 1fr;gap:1rem;}
+.wf-sidebar{background:var(--wf-card);border:1px solid var(--wf-border);border-radius:10px;padding:.85rem;}
+.wf-sidebar-item{display:flex;align-items:center;gap:.5rem;padding:.4rem .5rem;border-radius:6px;margin-bottom:.3rem;}
+.wf-sidebar-item.active{background:var(--wf-accent);}
+.wf-sidebar-dot{width:4px;height:4px;border-radius:50%;background:var(--wf-block-med);flex-shrink:0;}
+.wf-sidebar-item.active .wf-sidebar-dot{background:var(--wf-accent-b);}
+.wf-sidebar-text{height:5px;border-radius:2px;background:var(--wf-block);}
+.wf-sidebar-item.active .wf-sidebar-text{background:var(--wf-accent-b);}
+.wf-progress-bar{height:6px;background:var(--wf-block);border-radius:100px;overflow:hidden;margin-top:.3rem;}
+.wf-progress-fill{height:100%;border-radius:100px;background:var(--wf-accent-b);}
+.wf-progress-fill.green{background:var(--wf-green-b);}
+.wf-progress-fill.gold{background:var(--wf-gold-b);}
+.wf-checkbox{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--wf-block-med);flex-shrink:0;}
+.wf-checkbox.checked{background:var(--wf-accent-b);border-color:var(--wf-accent-b);}
+.wf-table{width:100%;border-collapse:collapse;}
+.wf-table th,.wf-table td{padding:.5rem .75rem;border-bottom:1px solid var(--wf-border);vertical-align:middle;}
+.wf-table th{background:var(--wf-bg);}
+.wf-table .wf-cell{height:6px;border-radius:2px;background:var(--wf-block);}
+.wf-table .wf-cell-med{height:6px;border-radius:2px;background:var(--wf-block-med);}
+.wf-btn{height:28px;border-radius:6px;background:var(--wf-accent);border:1px solid var(--wf-accent-b);}
+.wf-btn.ghost{background:transparent;border-color:var(--wf-border);}
+.wf-btn.green{background:var(--wf-green);border-color:var(--wf-green-b);}
+.wf-toggle-switch{width:28px;height:16px;border-radius:100px;background:var(--wf-accent);border:1px solid var(--wf-accent-b);flex-shrink:0;}
+.wf-toggle-switch.off{background:var(--wf-block);border-color:var(--wf-border);}
+.wf-step-flow{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin:1rem 0;}
+.wf-step-node{background:var(--wf-accent);border:1px solid var(--wf-accent-b);border-radius:8px;padding:.4rem .85rem;display:flex;align-items:center;gap:.35rem;}
+.wf-step-text{height:6px;border-radius:2px;background:var(--wf-accent-b);}
+.wf-step-arrow{color:var(--wf-accent-b);font-size:.8rem;opacity:.6;}
+.case-footer{background:var(--bg-surface);border-top:.5px solid var(--border);padding:3rem 4rem;text-align:center;transition:background .3s;}
+.case-footer-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.88rem;color:var(--terra);text-decoration:none;border:1px solid var(--accent-border);border-radius:100px;padding:.7rem 1.5rem;transition:background .2s;}
+.case-footer-link:hover{background:var(--accent-dim);}
+.fade-in{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+@media(max-width:900px){nav{padding:1rem 1.5rem;}.section{padding:3.5rem 1.5rem;}.case-hero{padding:7rem 1.5rem 4rem;}.outcome-grid,.reflection-cols,.wf-grid-2,.wf-grid-3,.wf-grid-4,.wf-sidebar-layout{grid-template-columns:1fr;}.case-footer{padding:3rem 1.5rem;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="Tushar Bisen" class="nav-logo-img"></a>
+  <ul class="nav-right">
+    <li><a href="index.html#work" class="nav-back-btn"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M8 10L4 6l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>All Work</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li style="display:flex;align-items:center;"><button class="theme-toggle" id="themeToggle"><span class="toggle-icon icon-sun">☀</span><span class="toggle-icon icon-moon">☽</span></button></li>
+    <li><a href="https://drive.google.com/file/d/1Kaz6TTUsaSzprqq8V6EZdSK_-AIRaRlG/view?usp=sharing" target="_blank" class="nav-resume">Resume</a></li>
+  </ul>
+</nav>
+
+<section class="case-hero">
+  <div class="hero-orb"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="h-tag accent">FactSet · ESG Select</span><span class="h-tag">Senior UX Designer</span><span class="h-tag">Growth & Upselling</span><span class="h-tag">2023</span></div>
+    <h1 class="case-title">Driving ESG Select Adoption<br>through <em>Seamless Upselling</em></h1>
+    <p class="hero-sub">FactSet had premium ESG datasets locked behind an additional subscription — but no strategy to surface that value without alienating existing users. We built the framework from scratch.</p>
+    <div class="hero-stats">
+      <div><div class="hstat-val">+14<em>%</em></div><div class="hstat-lbl">Subscription Growth</div></div>
+      <div><div class="hstat-val">2.3<em>×</em></div><div class="hstat-lbl">Section Engagement</div></div>
+      <div><div class="hstat-val">0→1</div><div class="hstat-lbl">Upsell Framework</div></div>
+      <div><div class="hstat-val">3<em>mo</em></div><div class="hstat-lbl">Time to Results</div></div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+<section class="section fade-in">
+  <div class="section-inner">
+    <p class="section-label">Overview</p>
+    <h2 class="section-title">A premium product with no way to sell itself</h2>
+    <p class="body-text">FactSet's ESG Select subscription unlocks deeper sustainability datasets sourced through third-party licensing agreements — including EMMI and other specialised providers. These datasets can't be included in the standard subscription due to licensing constraints.</p>
+    <p class="body-text">The problem: users who would genuinely benefit from ESG Select had <strong>no visibility into what they were missing</strong>. There was no existing framework within FactSet for surfacing upsell moments inside the platform.</p>
+    <div class="callout">
+      <p>The challenge wasn't just driving upgrades — it was doing so <strong>without triggering the frustration of feeling nickel-and-dimed</strong>. These users had already invested significantly in their FactSet subscriptions. The approach had to feel like a natural extension of their journey, not a sales interruption.</p>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+<section class="section fade-in" style="background:var(--bg-surface);">
+  <div class="section-inner">
+    <p class="section-label">Research & Discovery</p>
+    <h2 class="section-title">Understanding the landscape</h2>
+    <div class="insight-grid">
+      <div class="insight-card"><div class="insight-icon">📊</div><p class="insight-title">Analytics-driven discovery</p><p class="insight-desc">Platform analytics revealed specific touchpoints where users expected deeper ESG data but hit locked barriers — without understanding why. These became our prime upsell moments.</p></div>
+      <div class="insight-card"><div class="insight-icon">🤝</div><p class="insight-title">Stakeholder alignment</p><p class="insight-desc">Worked with PMs and Sales to map common user objections, understand the business context, and identify which features users most frequently asked about post-lock.</p></div>
+      <div class="insight-card"><div class="insight-icon">🔍</div><p class="insight-title">Competitive benchmarking</p><p class="insight-desc">Studied how other complex financial platforms handled gated content — identifying patterns that built user confidence versus those that drove churn or resentment.</p></div>
+      <div class="insight-card"><div class="insight-icon">🎯</div><p class="insight-title">Timing is everything</p><p class="insight-desc">The key insight: the upsell had to surface at the moment of intent — when users were already seeking the exact data ESG Select provides — not as a proactive interruption.</p></div>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">"I didn't even know there was more data available. I just thought FactSet didn't have it."</p>
+      <p class="quote-attr">— ESG Analyst, FactSet platform user (stakeholder research)</p>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+<section class="section fade-in">
+  <div class="section-inner">
+    <p class="section-label">Problem Framing</p>
+    <h2 class="section-title">The design challenge</h2>
+    <div class="hmw"><p>"How might we surface ESG Select as a natural, value-driven extension of the user's existing journey — at exactly the right moment — without disrupting their task flow or creating feelings of pressure?"</p></div>
+    <p class="body-text">This required creating FactSet's first in-platform upsell framework — one that balanced <strong>education, transparency, and trust</strong> while aligning with the expectations of a sophisticated financial user base.</p>
+  </div>
+</section>
+<hr class="divider">
+<section class="section fade-in" style="background:var(--bg-surface);">
+  <div class="section-inner">
+    <p class="section-label">Design Process</p>
+    <h2 class="section-title">How we built the framework</h2>
+    <div class="process-steps">
+      <div class="process-step"><div class="step-num">01</div><div><p class="step-title">Identify Intent Moments</p><p class="step-desc">Used analytics and stakeholder input to map specific touchpoints in the ESG Hub where users naturally looked for deeper data — these became anchor points for surfacing the upsell contextually.</p></div></div>
+      <div class="process-step"><div class="step-num">02</div><div><p class="step-title">Define the Communication Strategy</p><p class="step-desc">Crafted messaging that led with user benefit rather than cost. The tone had to be informative, not sales-y — explaining what ESG Select enables, not just that it exists.</p></div></div>
+      <div class="process-step"><div class="step-num">03</div><div><p class="step-title">Design the Teaser Component</p><p class="step-desc">Built a subtle embedded teaser within existing ESG workflows — dismissible, non-blocking, and designed to educate rather than interrupt. Explored placement in context with the locked data it unlocked.</p></div></div>
+      <div class="process-step"><div class="step-num">04</div><div><p class="step-title">Build Trust through Sample Access</p><p class="step-desc">Added access to a sample ESG Select report, allowing users to evaluate the actual depth of data before committing — a trust-building mechanism that reduced upgrade anxiety.</p></div></div>
+      <div class="process-step"><div class="step-num">05</div><div><p class="step-title">Iterate with Sales & Product</p><p class="step-desc">Ran design reviews across Sales, Product, and Engineering to align on messaging accuracy, conversion expectations, and technical constraints before shipping.</p></div></div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+<section class="section wf-section fade-in">
+  <div class="section-inner" style="max-width:1000px;">
+    <p class="section-label">Design Explorations</p>
+    <h2 class="section-title">Key screens</h2>
+    <div class="wireframe-stack">
+
+      <div>
+        <p class="wf-item-label">Screen 01 — ESG Select Teaser Component</p>
+        <p class="wf-item-caption">An embedded, dismissible banner within the ESG Hub that surfaces at the moment users encounter locked datasets — leading with what they gain, not what they're missing.</p>
+        <div class="wf-browser">
+          <div class="wf-chrome"><div class="wf-dots"><div class="wf-dot r"></div><div class="wf-dot y"></div><div class="wf-dot g"></div></div><div class="wf-address"><span class="wf-lock">🔒</span>factset.com / esg-hub / company / TSLA-US</div></div>
+          <div class="wf-nav-strip"><div class="wf-logo-block"></div><div class="wf-nav-items"><div class="wf-nav-item" style="width:50px;"></div><div class="wf-nav-item" style="width:60px;background:var(--wf-accent-b);opacity:.5;"></div><div class="wf-nav-item" style="width:55px;"></div></div><div class="wf-nav-cta"></div></div>
+          <div class="wf-content">
+            <div class="wf-row" style="margin-bottom:.75rem;">
+              <div style="width:32px;height:32px;border-radius:6px;background:var(--wf-block-med);flex-shrink:0;"></div>
+              <div style="flex:1;">
+                <div class="wf-h" style="width:120px;height:9px;margin-bottom:.25rem;"></div>
+                <div class="wf-p" style="width:200px;"></div>
+              </div>
+              <div style="display:flex;gap:.4rem;"><div class="wf-p" style="width:80px;margin:0;height:14px;border-radius:4px;"></div><div class="wf-p" style="width:70px;margin:0;height:14px;border-radius:4px;"></div></div>
+            </div>
+            <div class="wf-card accent" style="margin-bottom:.85rem;">
+              <div class="wf-row" style="justify-content:space-between;align-items:flex-start;margin-bottom:.75rem;">
+                <div style="flex:1;">
+                  <div class="wf-row" style="gap:.4rem;margin-bottom:.5rem;"><div style="width:14px;height:14px;border-radius:50%;background:var(--wf-accent-b);flex-shrink:0;"></div><div class="wf-h" style="width:240px;height:8px;margin-bottom:0;"></div><div class="wf-badge accent" style="margin-left:.3rem;"><div class="wf-badge-text" style="width:20px;"></div></div></div>
+                  <div class="wf-p" style="width:95%;"></div>
+                  <div class="wf-p" style="width:85%;"></div>
+                  <div class="wf-p" style="width:90%;"></div>
+                </div>
+                <div style="width:16px;height:16px;border-radius:50%;background:var(--wf-block-med);flex-shrink:0;margin-left:.75rem;"></div>
+              </div>
+              <div style="display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.75rem;">
+                <div style="height:5px;width:180px;background:var(--wf-accent-b);border-radius:2px;opacity:.5;"></div>
+                <div style="height:5px;width:200px;background:var(--wf-block);border-radius:2px;"></div>
+                <div style="height:5px;width:160px;background:var(--wf-block);border-radius:2px;"></div>
+                <div style="height:5px;width:220px;background:var(--wf-block);border-radius:2px;"></div>
+              </div>
+              <div class="wf-row" style="align-items:center;gap:.5rem;">
+                <div class="wf-btn" style="width:120px;height:28px;border-radius:6px;"></div>
+                <div class="wf-btn ghost" style="width:110px;height:28px;border-radius:6px;"></div>
+                <div style="display:flex;align-items:center;gap:.4rem;margin-left:.5rem;"><div class="wf-checkbox" style="width:12px;height:12px;"></div><div class="wf-p" style="width:80px;margin:0;height:5px;"></div></div>
+              </div>
+            </div>
+            <div class="wf-tab-row"><div class="wf-tab active" style="min-width:80px;"><div class="wf-tab-text" style="width:60px;"></div></div><div class="wf-tab" style="min-width:80px;"><div class="wf-tab-text" style="width:70px;"></div></div><div class="wf-tab" style="min-width:80px;"><div class="wf-tab-text" style="width:65px;"></div></div></div>
+            <div class="wf-grid-4" style="margin-bottom:.75rem;">
+              <div class="wf-card"><div class="wf-p" style="width:60%;"></div><div class="wf-h" style="width:70%;height:12px;"></div><div class="wf-p" style="width:80%;"></div></div>
+              <div class="wf-card"><div class="wf-p" style="width:60%;"></div><div class="wf-h" style="width:50%;height:12px;"></div><div class="wf-p" style="width:70%;"></div></div>
+              <div class="wf-card"><div class="wf-p" style="width:60%;"></div><div class="wf-h" style="width:65%;height:12px;"></div><div class="wf-p" style="width:75%;"></div></div>
+              <div class="wf-card"><div class="wf-p" style="width:60%;"></div><div class="wf-h" style="width:55%;height:12px;"></div><div class="wf-p" style="width:80%;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="wf-item-label">Screen 02 — Sample Report Preview</p>
+        <p class="wf-item-caption">Users can view a sample ESG Select report to evaluate the data quality and depth before committing to an upgrade — reducing decision anxiety and building confidence.</p>
+        <div class="wf-browser">
+          <div class="wf-chrome"><div class="wf-dots"><div class="wf-dot r"></div><div class="wf-dot y"></div><div class="wf-dot g"></div></div><div class="wf-address"><span class="wf-lock">🔒</span>factset.com / esg-hub / esg-select / sample-report</div></div>
+          <div class="wf-nav-strip"><div class="wf-logo-block"></div><div class="wf-nav-items"><div class="wf-nav-item" style="width:50px;"></div><div class="wf-nav-item" style="width:60px;"></div><div class="wf-nav-item" style="width:55px;background:var(--wf-accent-b);opacity:.5;"></div></div><div style="display:flex;gap:.5rem;"><div class="wf-nav-cta"></div><div class="wf-btn ghost" style="width:50px;height:24px;border-radius:100px;"></div></div></div>
+          <div class="wf-content">
+            <div class="wf-row" style="margin-bottom:.5rem;"><div class="wf-badge accent"><div class="wf-badge-text" style="width:80px;"></div></div></div>
+            <div class="wf-h" style="width:50%;height:12px;margin-bottom:.35rem;"></div>
+            <div class="wf-p" style="width:65%;margin-bottom:1rem;"></div>
+            <div class="wf-sidebar-layout">
+              <div class="wf-sidebar">
+                <div class="wf-h" style="width:80%;height:7px;margin-bottom:.75rem;"></div>
+                <div class="wf-sidebar-item active"><div class="wf-sidebar-dot"></div><div class="wf-sidebar-text" style="width:90px;"></div></div>
+                <div class="wf-sidebar-item"><div class="wf-sidebar-dot"></div><div class="wf-sidebar-text" style="width:70px;"></div></div>
+                <div class="wf-sidebar-item"><div class="wf-sidebar-dot"></div><div class="wf-sidebar-text" style="width:80px;"></div></div>
+                <div class="wf-sidebar-item"><div class="wf-sidebar-dot"></div><div class="wf-sidebar-text" style="width:65px;"></div></div>
+                <div style="margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--wf-border);"><div class="wf-btn" style="width:100%;height:28px;border-radius:6px;"></div></div>
+              </div>
+              <div class="wf-col" style="gap:.75rem;">
+                <div class="wf-card accent"><div class="wf-h" style="width:60%;height:8px;margin-bottom:.5rem;"></div><div class="wf-p"></div><div class="wf-p" style="width:85%;"></div><div class="wf-p" style="width:70%;"></div></div>
+                <div class="wf-grid-2">
+                  <div class="wf-card green"><div class="wf-p" style="width:50%;"></div><div class="wf-h" style="width:40%;height:11px;"></div><div class="wf-p" style="width:70%;"></div></div>
+                  <div class="wf-card gold"><div class="wf-p" style="width:50%;"></div><div class="wf-h" style="width:45%;height:11px;"></div><div class="wf-p" style="width:65%;"></div></div>
+                </div>
+                <div class="wf-card"><div class="wf-h" style="width:55%;height:8px;margin-bottom:.5rem;"></div><div class="wf-p"></div><div class="wf-p" style="width:90%;"></div><div class="wf-p" style="width:75%;"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<hr class="divider">
+<section class="section fade-in">
+  <div class="section-inner">
+    <p class="section-label">Outcomes</p>
+    <h2 class="section-title">Impact</h2>
+    <div class="outcome-grid">
+      <div class="outcome-card hi"><div class="outcome-icon">📈</div><p class="outcome-title">+14% subscription growth</p><p class="outcome-desc">ESG Select subscriptions grew 14% within 3 months of launch — a clear signal that contextual, value-led upselling works better than standalone sales outreach.</p></div>
+      <div class="outcome-card hi"><div class="outcome-icon">🔗</div><p class="outcome-title">2.3× higher engagement</p><p class="outcome-desc">Sections surfacing ESG Select content saw 2.3× more engagement than previous attempts — validating that timing and context were the missing ingredients.</p></div>
+      <div class="outcome-card"><div class="outcome-icon">🧭</div><p class="outcome-title">First upsell framework at FactSet</p><p class="outcome-desc">Established a reusable pattern for how FactSet surfaces premium content — now a reference for future monetisation initiatives across other product lines.</p></div>
+      <div class="outcome-card"><div class="outcome-icon">🤝</div><p class="outcome-title">Cross-functional alignment</p><p class="outcome-desc">Brought Sales, Product, and Engineering into a shared design language for upselling — reducing friction in future premium feature launches.</p></div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+<section class="section fade-in" style="background:var(--bg-surface);">
+  <div class="section-inner">
+    <p class="section-label">Reflection</p>
+    <h2 class="section-title">Key learnings</h2>
+    <div class="reflection-cols">
+      <div class="refl-card worked"><p class="refl-heading">What worked well</p><ul class="refl-list"><li>Leading with user benefit — not cost — made the upsell feel like a recommendation, not a sales pitch</li><li>Sample report access was the trust-building mechanism that made the difference for hesitant users</li><li>Surfacing at intent moments (when users hit a data gap) meant the message was always relevant</li><li>Involving Sales early ensured messaging aligned with what users actually asked about</li></ul></div>
+      <div class="refl-card learned"><p class="refl-heading">What I'd do differently</p><ul class="refl-list"><li>A/B test different placements and copy variants to find the highest-converting combination</li><li>Design a clearer path for users who express interest but aren't decision-makers — connect them to Sales more explicitly</li><li>Track longer-term retention of upgraded users to validate that the value proposition matched reality</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<div class="case-footer"><a href="index.html" class="case-footer-link"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Back to all case studies</a></div>
+<script>
+const htmlEl=document.documentElement,toggleBtn=document.getElementById('themeToggle');
+toggleBtn.addEventListener('click',()=>{const n=htmlEl.getAttribute('data-theme')==='dark'?'light':'dark';htmlEl.setAttribute('data-theme',n);localStorage.setItem('tb-theme',n);});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:.06});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
