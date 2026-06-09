@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earnings Call Assistant — Case Study | Tushar Bisen</title>
+<link rel="icon" type="image/png" href="logo.png">
+<script>
+  (function(){ var t=localStorage.getItem('tb-theme')||'dark'; document.documentElement.setAttribute('data-theme',t); })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── LIGHT MODE TOKENS (match portfolio exactly) ── */
+:root {
+  --bg-page:        #FAF7F2;
+  --bg-surface:     #F0EBE1;
+  --bg-card:        #FFFFF8;
+  --bg-nav:         rgba(250,247,242,0.9);
+  --text-primary:   #2C1F14;
+  --text-secondary: #6B5040;
+  --text-muted:     #A8896E;
+  --border:         rgba(61,43,31,0.1);
+  --border-med:     rgba(61,43,31,0.18);
+  --terra:          #C4623A;
+  --terra-light:    #E8825E;
+  --terra-pale:     #FAE8DF;
+  --brown-deep:     #2E1E12;
+  --toggle-bg:      #E8DDD0;
+  --toggle-knob:    #fff;
+  --accent:         #C4623A;
+  --accent-dim:     rgba(196,98,58,0.08);
+  --accent-border:  rgba(196,98,58,0.22);
+  --wf-bg:          #F5F0E8;
+  --wf-card:        #FFFFF8;
+  --wf-border:      rgba(61,43,31,0.12);
+  --wf-block:       rgba(61,43,31,0.08);
+  --wf-block-med:   rgba(61,43,31,0.14);
+  --wf-accent:      rgba(196,98,58,0.15);
+  --wf-accent-b:    rgba(196,98,58,0.3);
+  --wf-green:       rgba(60,160,100,0.15);
+  --wf-green-b:     rgba(60,160,100,0.35);
+  --wf-gold:        rgba(180,130,40,0.12);
+  --wf-gold-b:      rgba(180,130,40,0.3);
+  --wf-text:        rgba(61,43,31,0.5);
+  --wf-label:       #C4623A;
+  --insight-bg:     #F5F0E8;
+  --quote-border:   rgba(196,98,58,0.3);
+}
+
+/* ── DARK MODE TOKENS (match portfolio exactly) ── */
+[data-theme="dark"] {
+  --bg-page:        #141010;
+  --bg-surface:     #1C1714;
+  --bg-card:        #211C18;
+  --bg-nav:         rgba(18,14,12,0.92);
+  --text-primary:   #F0E8DF;
+  --text-secondary: #B09A88;
+  --text-muted:     #7A6558;
+  --border:         rgba(240,220,200,0.08);
+  --border-med:     rgba(240,220,200,0.14);
+  --terra:          #E0784E;
+  --terra-light:    #F0997A;
+  --terra-pale:     rgba(224,120,78,0.12);
+  --brown-deep:     #0C0908;
+  --toggle-bg:      #3A2E26;
+  --toggle-knob:    #E0784E;
+  --accent:         #E0784E;
+  --accent-dim:     rgba(224,120,78,0.1);
+  --accent-border:  rgba(224,120,78,0.25);
+  --wf-bg:          #1A1614;
+  --wf-card:        #211C18;
+  --wf-border:      rgba(240,220,200,0.1);
+  --wf-block:       rgba(240,220,200,0.07);
+  --wf-block-med:   rgba(240,220,200,0.13);
+  --wf-accent:      rgba(224,120,78,0.12);
+  --wf-accent-b:    rgba(224,120,78,0.3);
+  --wf-green:       rgba(78,207,160,0.1);
+  --wf-green-b:     rgba(78,207,160,0.3);
+  --wf-gold:        rgba(212,168,67,0.1);
+  --wf-gold-b:      rgba(212,168,67,0.3);
+  --wf-text:        rgba(240,220,200,0.3);
+  --wf-label:       #E0784E;
+  --insight-bg:     #1C1714;
+  --quote-border:   rgba(224,120,78,0.25);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ── NAV (exact match to portfolio) ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem 4rem;
+  background: var(--bg-nav);
+  backdrop-filter: blur(16px);
+  border-bottom: 0.5px solid var(--border);
+  transition: background 0.3s;
+}
+.nav-logo-img { height: 48px; width: auto; vertical-align: middle; display: block; transition: filter 0.3s; }
+[data-theme="dark"] .nav-logo-img { filter: invert(1) brightness(2); }
+.nav-logo { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 500; color: var(--text-primary); text-decoration: none; letter-spacing: -0.01em; transition: color 0.3s; }
+.nav-right { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-right a { font-size: 0.78rem; font-weight: 400; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+.nav-right a:hover { color: var(--terra); }
+.nav-back-btn { display: flex; align-items: center; gap: 0.4rem; }
+.nav-back-btn svg { transition: transform 0.2s; }
+.nav-back-btn:hover svg { transform: translateX(-3px); }
+.nav-resume { padding: 0.48rem 1.15rem; background: var(--terra) !important; color: #fff !important; border-radius: 100px; transition: opacity 0.2s !important; }
+.nav-resume:hover { opacity: 0.85 !important; }
+.theme-toggle { width: 42px; height: 24px; border-radius: 100px; background: var(--toggle-bg); border: none; cursor: pointer; position: relative; flex-shrink: 0; transition: background 0.3s; outline: none; }
+.theme-toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--toggle-knob); transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.3s; }
+[data-theme="dark"] .theme-toggle::after { transform: translateX(18px); }
+.toggle-icon { position: absolute; top: 50%; font-size: 10px; line-height: 1; transform: translateY(-50%); pointer-events: none; transition: opacity 0.2s; }
+.icon-sun { left: 5px; opacity: 1; }
+.icon-moon { right: 4px; opacity: 0; }
+[data-theme="dark"] .icon-sun { opacity: 0; }
+[data-theme="dark"] .icon-moon { opacity: 1; }
+
+/* ── CASE HERO ── */
+.case-hero {
+  min-height: 72vh; display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 9rem 4rem 5rem; position: relative; overflow: hidden;
+  background: var(--bg-surface);
+  transition: background 0.3s;
+}
+.hero-orb-a {
+  position: absolute; width: 600px; height: 600px; border-radius: 50%;
+  top: -150px; right: -80px; pointer-events: none;
+  background: radial-gradient(circle, rgba(196,98,58,0.08) 0%, transparent 68%);
+  transition: background 0.3s;
+}
+[data-theme="dark"] .hero-orb-a { background: radial-gradient(circle, rgba(224,120,78,0.1) 0%, transparent 68%); }
+.hero-inner { position: relative; z-index: 1; max-width: 920px; }
+.hero-eyebrow { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.h-tag {
+  padding: 0.28rem 0.85rem; border-radius: 100px; font-size: 0.7rem;
+  font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase;
+  border: 1px solid var(--border-med); color: var(--text-muted);
+  transition: all 0.3s;
+}
+.h-tag.accent { border-color: var(--accent-border); color: var(--accent); background: var(--accent-dim); }
+h1.case-title {
+  font-family: 'Lora', serif; font-size: clamp(2.6rem, 5vw, 4.4rem);
+  font-weight: 400; line-height: 1.1; letter-spacing: -0.025em;
+  color: var(--text-primary); margin-bottom: 1.25rem; transition: color 0.3s;
+}
+h1.case-title em { font-style: italic; color: var(--terra); }
+.hero-sub { font-size: 1rem; font-weight: 300; color: var(--text-secondary); max-width: 620px; line-height: 1.8; margin-bottom: 2.5rem; }
+.hero-stats { display: flex; gap: 3rem; flex-wrap: wrap; border-top: 0.5px solid var(--border); padding-top: 2rem; }
+.hstat-val { font-family: 'Lora', serif; font-size: 2rem; font-weight: 400; color: var(--text-primary); line-height: 1; }
+.hstat-val em { font-style: normal; color: var(--terra); font-size: 1.3rem; }
+.hstat-lbl { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
+
+/* ── SECTIONS ── */
+.section { padding: 5rem 4rem; transition: background 0.3s; }
+.section-inner { max-width: 880px; margin: 0 auto; }
+.section-label {
+  font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--terra); font-weight: 500; margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.section-label::after { content: ''; display: block; width: 40px; height: 1px; background: var(--terra); opacity: 0.35; }
+h2.section-title { font-family: 'Lora', serif; font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 400; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 1.25rem; line-height: 1.25; }
+.body-text { font-size: 0.97rem; font-weight: 300; color: var(--text-secondary); line-height: 1.85; margin-bottom: 1.1rem; }
+.body-text strong { color: var(--text-primary); font-weight: 500; }
+.divider { border: none; border-top: 0.5px solid var(--border); margin: 0; }
+
+/* CALLOUT */
+.callout {
+  background: var(--bg-card); border: 1px solid var(--border-med);
+  border-left: 3px solid var(--terra); border-radius: 12px;
+  padding: 1.5rem 1.75rem; margin: 1.75rem 0; transition: background 0.3s, border-color 0.3s;
+}
+.callout p { font-size: 0.97rem; font-weight: 300; color: var(--text-secondary); line-height: 1.8; margin: 0; }
+.callout.green { border-left-color: #3CA064; }
+.callout p strong { color: var(--text-primary); }
+
+/* INSIGHT GRID */
+.insight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.75rem 0; }
+.insight-card { background: var(--insight-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; transition: background 0.3s, border-color 0.3s; }
+.insight-icon { font-size: 1.3rem; margin-bottom: 0.6rem; }
+.insight-title { font-size: 0.88rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.35rem; }
+.insight-desc { font-size: 0.82rem; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+
+/* QUOTE */
+.quote-block { border-left: 2px solid var(--quote-border); padding: 0.75rem 1.5rem; margin: 1.75rem 0; }
+.quote-text { font-family: 'Lora', serif; font-size: 1.05rem; font-style: italic; color: var(--text-secondary); line-height: 1.75; margin-bottom: 0.4rem; }
+.quote-attr { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+
+/* PROCESS STEPS */
+.process-steps { margin: 1.75rem 0; }
+.process-step { display: flex; gap: 1.5rem; padding: 1.4rem 0; border-bottom: 0.5px solid var(--border); }
+.process-step:last-child { border-bottom: none; }
+.step-num { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--terra); opacity: 0.6; width: 28px; flex-shrink: 0; padding-top: 0.2rem; }
+.step-title { font-size: 0.93rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.35rem; }
+.step-desc { font-size: 0.85rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; }
+
+/* OUTCOME GRID */
+.outcome-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.75rem 0; }
+.outcome-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; transition: background 0.3s; }
+.outcome-card.hi { border-color: var(--accent-border); background: var(--accent-dim); }
+.outcome-icon { font-size: 1.4rem; margin-bottom: 0.6rem; }
+.outcome-title { font-size: 0.9rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.3rem; }
+.outcome-desc { font-size: 0.82rem; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+
+/* REFLECTION */
+.reflection-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.5rem; }
+.refl-card { padding: 1.4rem; border-radius: 12px; border: 1px solid var(--border); }
+.refl-card.worked { border-color: var(--accent-border); }
+.refl-heading { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; margin-bottom: 0.75rem; color: var(--terra); }
+.refl-card.learned .refl-heading { color: var(--text-muted); }
+.refl-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.refl-list li { font-size: 0.85rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; padding-left: 1rem; position: relative; }
+.refl-list li::before { content: '—'; position: absolute; left: 0; color: var(--text-muted); }
+
+/* ════════════════════════════════════════
+   WIREFRAME SYSTEM
+════════════════════════════════════════ */
+.wf-section { background: var(--bg-surface); transition: background 0.3s; }
+.wireframe-stack { display: flex; flex-direction: column; gap: 4.5rem; margin-top: 2.5rem; }
+.wf-item-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terra); font-weight: 500; margin-bottom: 0.4rem; }
+.wf-item-caption { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; line-height: 1.6; margin-bottom: 1.25rem; max-width: 600px; }
+
+/* Browser Chrome */
+.wf-browser {
+  background: var(--wf-card); border: 1px solid var(--wf-border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.07);
+  transition: background 0.3s, border-color 0.3s;
+}
+.wf-chrome {
+  background: var(--wf-bg); border-bottom: 1px solid var(--wf-border);
+  padding: 0.7rem 1rem; display: flex; align-items: center; gap: 0.75rem;
+}
+.wf-dots { display: flex; gap: 5px; }
+.wf-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--wf-block-med); }
+.wf-dot.r { background: rgba(220,80,80,0.35); }
+.wf-dot.y { background: rgba(200,160,40,0.35); }
+.wf-dot.g { background: rgba(60,180,100,0.35); }
+.wf-address {
+  flex: 1; background: var(--wf-bg); border: 1px solid var(--wf-border);
+  border-radius: 6px; padding: 0.28rem 0.75rem;
+  font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--text-muted);
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.wf-lock { opacity: 0.4; font-size: 0.6rem; }
+.wf-nav-strip {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.65rem 1.25rem; border-bottom: 1px solid var(--wf-border);
+  background: var(--wf-card);
+}
+.wf-logo-block { width: 52px; height: 14px; background: var(--wf-block-med); border-radius: 4px; }
+.wf-nav-items { display: flex; gap: 1.25rem; }
+.wf-nav-item { height: 7px; border-radius: 3px; background: var(--wf-block); }
+.wf-nav-cta { height: 24px; width: 70px; border-radius: 100px; background: var(--wf-accent); border: 1px solid var(--wf-accent-b); }
+.wf-content { padding: 1.25rem 1.5rem; }
+
+/* Reusable blocks */
+.wf-blk { background: var(--wf-block); border-radius: 3px; }
+.wf-blk-med { background: var(--wf-block-med); border-radius: 3px; }
+.wf-blk-accent { background: var(--wf-accent); border: 1px solid var(--wf-accent-b); border-radius: 3px; }
+.wf-blk-green { background: var(--wf-green); border: 1px solid var(--wf-green-b); border-radius: 3px; }
+.wf-blk-gold { background: var(--wf-gold); border: 1px solid var(--wf-gold-b); border-radius: 3px; }
+
+/* ── WF PAGE HEADER ── */
+.wf-page-header { margin-bottom: 1.25rem; }
+.wf-breadcrumb { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.6rem; }
+.wf-bread-item { height: 6px; border-radius: 3px; background: var(--wf-block); }
+.wf-bread-sep { font-size: 0.55rem; color: var(--wf-text); }
+.wf-page-title-block { height: 14px; width: 55%; border-radius: 5px; background: var(--wf-block-med); margin-bottom: 0.4rem; }
+.wf-page-sub-block { height: 8px; width: 75%; border-radius: 3px; background: var(--wf-block); margin-bottom: 1rem; }
+.wf-tab-row { display: flex; gap: 0.5rem; border-bottom: 1px solid var(--wf-border); padding-bottom: 0; margin-bottom: 1.25rem; }
+.wf-tab { height: 28px; border-radius: 6px 6px 0 0; padding: 0 1rem; display: flex; align-items: center; background: var(--wf-block); }
+.wf-tab.active { background: var(--wf-accent); border: 1px solid var(--wf-accent-b); border-bottom: none; }
+.wf-tab-text { height: 6px; border-radius: 3px; background: var(--wf-block-med); }
+.wf-tab.active .wf-tab-text { background: var(--wf-accent-b); }
+
+/* ── WF1: SCHEDULING ── */
+.wf-sched-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+.wf-sched-filter-row { display: flex; gap: 0.5rem; }
+.wf-filter-chip { height: 26px; border-radius: 100px; border: 1px solid var(--wf-border); background: var(--wf-bg); display: flex; align-items: center; padding: 0 0.75rem; gap: 0.35rem; }
+.wf-filter-chip.active { background: var(--wf-accent); border-color: var(--wf-accent-b); }
+.wf-filter-text { height: 6px; border-radius: 3px; background: var(--wf-block-med); }
+.wf-filter-chip.active .wf-filter-text { background: var(--wf-accent-b); }
+.wf-sched-add { height: 30px; border-radius: 100px; background: var(--wf-accent); border: 1px solid var(--wf-accent-b); display: flex; align-items: center; padding: 0 0.85rem; gap: 0.4rem; }
+.wf-plus { font-size: 0.75rem; color: var(--wf-accent-b); font-weight: 300; }
+.wf-sched-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }
+.wf-call-card {
+  background: var(--wf-card); border: 1px solid var(--wf-border);
+  border-radius: 10px; padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem;
+  transition: background 0.3s;
+}
+.wf-call-card.live { border-color: var(--wf-green-b); background: var(--wf-green); }
+.wf-call-card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.wf-status-badge { height: 18px; border-radius: 100px; padding: 0 0.6rem; display: flex; align-items: center; gap: 0.3rem; background: var(--wf-block); }
+.wf-status-badge.live-b { background: var(--wf-green); border: 1px solid var(--wf-green-b); }
+.wf-status-badge.scheduled { background: var(--wf-accent); border: 1px solid var(--wf-accent-b); }
+.wf-status-badge.completed { background: var(--wf-block); border: 1px solid var(--wf-border); }
+.wf-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--wf-green-b); }
+.wf-badge-text { height: 5px; width: 32px; border-radius: 2px; background: var(--wf-block-med); }
+.wf-call-co-row { display: flex; align-items: center; gap: 0.55rem; }
+.wf-co-logo { width: 28px; height: 28px; border-radius: 6px; background: var(--wf-block-med); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.5rem; color: var(--wf-text); }
+.wf-co-info { flex: 1; }
+.wf-co-name { height: 8px; width: 80px; background: var(--wf-block-med); border-radius: 3px; margin-bottom: 0.3rem; }
+.wf-co-ticker { height: 5px; width: 40px; background: var(--wf-block); border-radius: 2px; }
+.wf-call-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.wf-meta-chip { height: 16px; border-radius: 4px; background: var(--wf-block); padding: 0 0.4rem; display: flex; align-items: center; }
+.wf-meta-chip-text { height: 5px; border-radius: 2px; background: var(--wf-block-med); }
+.wf-call-desc-lines { display: flex; flex-direction: column; gap: 0.3rem; }
+.wf-call-desc-line { height: 5px; border-radius: 2px; background: var(--wf-block); }
+.wf-call-actions { display: flex; gap: 0.5rem; margin-top: 0.25rem; }
+.wf-action-btn { flex: 1; height: 28px; border-radius: 6px; background: var(--wf-accent); border: 1px solid var(--wf-accent-b); }
+.wf-action-btn.ghost { background: transparent; border-color: var(--wf-border); }
+.wf-action-btn.green { background: var(--wf-green); border-color: var(--wf-green-b); }
+.wf-sched-empty { border: 1.5px dashed var(--wf-border); border-radius: 10px; min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; }
+.wf-empty-icon { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--wf-border); display: flex; align-items: center; justify-content: center; }
+.wf-empty-plus { height: 8px; width: 8px; background: var(--wf-block-med); }
+.wf-empty-text { height: 6px; width: 80px; background: var(--wf-block); border-radius: 3px; }
+
+/* ── WF2: LIVE CALL ── */
+.wf-live-layout { display: grid; grid-template-columns: 1fr 240px; gap: 1rem; }
+.wf-live-header {
+  background: var(--wf-green); border: 1px solid var(--wf-green-b);
+  border-radius: 10px; padding: 0.75rem 1rem; margin-bottom: 0.85rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.wf-live-left { display: flex; align-items: center; gap: 0.75rem; }
+.wf-live-indicator { display: flex; align-items: center; gap: 0.35rem; }
+.wf-live-pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--wf-green-b); animation: pulse 1.4s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.85)} }
+.wf-live-text { height: 7px; width: 25px; background: var(--wf-green-b); border-radius: 3px; }
+.wf-live-co-info { display: flex; flex-direction: column; gap: 0.3rem; }
+.wf-live-co-name { height: 8px; width: 90px; background: var(--wf-block-med); border-radius: 3px; }
+.wf-live-co-sub { height: 5px; width: 60px; background: var(--wf-block); border-radius: 2px; }
+.wf-live-right { display: flex; align-items: center; gap: 1rem; }
+.wf-timer-block { display: flex; flex-direction: column; align-items: flex-end; gap: 0.25rem; }
+.wf-timer-val { height: 10px; width: 50px; background: var(--wf-green-b); border-radius: 4px; }
+.wf-timer-lbl { height: 5px; width: 35px; background: var(--wf-block); border-radius: 2px; }
+.wf-live-controls { display: flex; gap: 0.4rem; }
+.wf-ctrl-btn { width: 28px; height: 28px; border-radius: 6px; background: var(--wf-block); border: 1px solid var(--wf-border); }
+.wf-ctrl-btn.primary { background: var(--wf-accent); border-color: var(--wf-accent-b); }
+.wf-transcript-panel {
+  background: var(--wf-card); border: 1px solid var(--wf-border);
+  border-radius: 10px; overflow: hidden;
+}
+.wf-transcript-toolbar {
+  background: var(--wf-bg); border-bottom: 1px solid var(--wf-border);
+  padding: 0.55rem 0.85rem; display: flex; align-items: center; justify-content: space-between;
+}
+.wf-tt-label { height: 6px; width: 70px; background: var(--wf-block-med); border-radius: 3px; }
+.wf-tt-search { height: 22px; width: 100px; border-radius: 6px; background: var(--wf-block); border: 1px solid var(--wf-border); }
+.wf-transcript-body { padding: 0.85rem; display: flex; flex-direction: column; gap: 0.75rem; max-height: 320px; overflow: hidden; }
+.wf-speaker-block { display: flex; gap: 0.65rem; }
+.wf-sp-avatar { width: 24px; height: 24px; border-radius: 50%; background: var(--wf-block-med); flex-shrink: 0; margin-top: 2px; }
+.wf-sp-body { flex: 1; }
+.wf-sp-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; }
+.wf-sp-name { height: 7px; width: 70px; background: var(--wf-block-med); border-radius: 3px; }
+.wf-sp-role { height: 5px; width: 45px; background: var(--wf-block); border-radius: 2px; }
+.wf-sp-time { height: 5px; width: 30px; background: var(--wf-block); border-radius: 2px; margin-left: auto; }
+.wf-sp-lines { display: flex; flex-direction: column; gap: 0.3rem; }
+.wf-sp-line { height: 5px; background: var(--wf-block); border-radius: 2px; }
+.wf-highlight-block {
+  background: var(--wf-gold); border: 1px solid var(--wf-gold-b);
+  border-radius: 7px; padding: 0.6rem 0.75rem;
+}
+.wf-hl-header { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.45rem; }
+.wf-hl-icon { height: 7px; width: 7px; border-radius: 50%; background: var(--wf-gold-b); }
+.wf-hl-tag { height: 6px; width: 60px; background: var(--wf-gold-b); border-radius: 3px; }
+.wf-hl-lines { display: flex; flex-direction: column; gap: 0.3rem; }
+.wf-hl-line { height: 5px; background: var(--wf-gold); border: 1px solid var(--wf-gold-b); border-radius: 2px; }
+
+.wf-sidebar-panels { display: flex; flex-direction: column; gap: 0.75rem; }
+.wf-sidebar-panel {
+  background: var(--wf-card); border: 1px solid var(--wf-border);
+  border-radius: 10px; padding: 0.85rem;
+}
+.wf-panel-title { height: 7px; width: 70px; background: var(--wf-block-med); border-radius: 3px; margin-bottom: 0.85rem; }
+.wf-sent-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+.wf-sent-label { height: 5px; width: 45px; background: var(--wf-block); border-radius: 2px; flex-shrink: 0; }
+.wf-sent-track { flex: 1; height: 5px; background: var(--wf-block); border-radius: 100px; overflow: hidden; }
+.wf-sent-fill { height: 100%; border-radius: 100px; }
+.wf-sent-fill.pos { width: 68%; background: var(--wf-green-b); }
+.wf-sent-fill.neu { width: 22%; background: var(--wf-gold-b); }
+.wf-sent-fill.neg { width: 10%; background: rgba(200,80,80,0.4); }
+.wf-sent-pct { height: 6px; width: 22px; background: var(--wf-block-med); border-radius: 2px; }
+.wf-kw-cloud { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.wf-kw-chip { height: 18px; border-radius: 100px; background: var(--wf-accent); border: 1px solid var(--wf-accent-b); }
+.wf-alerts { display: flex; flex-direction: column; gap: 0.45rem; }
+.wf-alert-row { display: flex; align-items: flex-start; gap: 0.45rem; }
+.wf-alert-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--wf-accent-b); flex-shrink: 0; margin-top: 4px; }
+.wf-alert-dot.gold { background: var(--wf-gold-b); }
+.wf-alert-lines { display: flex; flex-direction: column; gap: 0.25rem; }
+.wf-alert-line { height: 5px; background: var(--wf-block); border-radius: 2px; }
+
+/* ── WF3: REPORT ── */
+.wf-report-layout { display: grid; grid-template-columns: 190px 1fr; gap: 1rem; }
+.wf-report-toc { background: var(--wf-card); border: 1px solid var(--wf-border); border-radius: 10px; padding: 0.85rem; align-self: start; position: sticky; top: 0; }
+.wf-toc-header { height: 7px; width: 60px; background: var(--wf-block-med); border-radius: 3px; margin-bottom: 1rem; }
+.wf-toc-section { margin-bottom: 1rem; }
+.wf-toc-section-label { height: 5px; width: 50px; background: var(--wf-accent-b); border-radius: 2px; margin-bottom: 0.5rem; opacity: 0.6; }
+.wf-toc-item { display: flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.35rem; border-radius: 5px; margin-bottom: 0.2rem; }
+.wf-toc-item.active { background: var(--wf-accent); }
+.wf-toc-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--wf-block-med); flex-shrink: 0; }
+.wf-toc-item.active .wf-toc-dot { background: var(--wf-accent-b); }
+.wf-toc-text { height: 5px; border-radius: 2px; background: var(--wf-block); }
+.wf-toc-item.active .wf-toc-text { background: var(--wf-accent-b); }
+.wf-report-main { display: flex; flex-direction: column; gap: 0.85rem; }
+.wf-report-section {
+  background: var(--wf-card); border: 1px solid var(--wf-border);
+  border-radius: 10px; padding: 1.1rem; transition: background 0.3s;
+}
+.wf-report-section.accent-l { border-left: 2px solid var(--wf-accent-b); }
+.wf-report-section.gold-l { border-left: 2px solid var(--wf-gold-b); }
+.wf-report-section.green-l { border-left: 2px solid var(--wf-green-b); }
+.wf-report-section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.85rem; }
+.wf-rsh-left { display: flex; align-items: center; gap: 0.5rem; }
+.wf-rsh-icon { width: 22px; height: 22px; border-radius: 6px; background: var(--wf-accent); border: 1px solid var(--wf-accent-b); }
+.wf-rsh-icon.gold { background: var(--wf-gold); border-color: var(--wf-gold-b); }
+.wf-rsh-icon.green { background: var(--wf-green); border-color: var(--wf-green-b); }
+.wf-rsh-title { height: 9px; width: 110px; background: var(--wf-block-med); border-radius: 4px; }
+.wf-rsh-tag { height: 18px; width: 55px; border-radius: 100px; background: var(--wf-block); border: 1px solid var(--wf-border); }
+.wf-report-body { display: flex; flex-direction: column; gap: 0.32rem; margin-bottom: 0.75rem; }
+.wf-report-line { height: 5px; background: var(--wf-block); border-radius: 2px; }
+.wf-sent-summary { display: flex; gap: 0.5rem; }
+.wf-sent-chip { height: 22px; flex: 1; border-radius: 6px; background: var(--wf-green); border: 1px solid var(--wf-green-b); display: flex; align-items: center; justify-content: center; gap: 0.3rem; }
+.wf-sent-chip.gold { background: var(--wf-gold); border-color: var(--wf-gold-b); }
+.wf-sent-chip.neg { background: rgba(200,80,80,0.08); border-color: rgba(200,80,80,0.25); }
+.wf-sent-chip-text { height: 5px; width: 30px; border-radius: 2px; background: var(--wf-green-b); }
+.wf-sent-chip.gold .wf-sent-chip-text { background: var(--wf-gold-b); }
+.wf-key-topics { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.wf-topic-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.45rem 0.6rem; background: var(--wf-bg); border-radius: 6px; border: 1px solid var(--wf-border); }
+.wf-topic-num { height: 6px; width: 14px; background: var(--wf-accent-b); border-radius: 2px; }
+.wf-topic-text { height: 5px; flex: 1; background: var(--wf-block-med); border-radius: 2px; }
+.wf-topic-badge { height: 14px; width: 28px; border-radius: 4px; background: var(--wf-green); border: 1px solid var(--wf-green-b); }
+.wf-compare-row { display: flex; gap: 0.6rem; }
+.wf-compare-cell { flex: 1; background: var(--wf-bg); border: 1px solid var(--wf-border); border-radius: 7px; padding: 0.6rem; }
+.wf-compare-label { height: 5px; width: 50px; background: var(--wf-block-med); border-radius: 2px; margin-bottom: 0.5rem; }
+.wf-compare-val { height: 10px; width: 60px; background: var(--wf-block-med); border-radius: 4px; margin-bottom: 0.3rem; }
+.wf-compare-delta { height: 6px; width: 40px; border-radius: 2px; }
+.wf-compare-delta.up { background: var(--wf-green-b); }
+.wf-compare-delta.dn { background: rgba(200,80,80,0.4); }
+
+/* ── WF4: EXPORT ── */
+.wf-export-layout { display: grid; grid-template-columns: 280px 1fr; gap: 1rem; }
+.wf-export-panel { background: var(--wf-card); border: 1px solid var(--wf-border); border-radius: 10px; padding: 1.1rem; }
+.wf-export-section-label { height: 6px; width: 70px; background: var(--wf-block-med); border-radius: 3px; margin-bottom: 0.85rem; }
+.wf-format-options { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+.wf-format-opt {
+  display: flex; align-items: center; gap: 0.65rem;
+  background: var(--wf-bg); border: 1px solid var(--wf-border);
+  border-radius: 8px; padding: 0.6rem 0.75rem;
+}
+.wf-format-opt.selected { background: var(--wf-accent); border-color: var(--wf-accent-b); }
+.wf-format-radio { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--wf-block-med); flex-shrink: 0; }
+.wf-format-opt.selected .wf-format-radio { border-color: var(--wf-accent-b); background: var(--wf-accent-b); }
+.wf-format-info { flex: 1; }
+.wf-format-name { height: 7px; width: 60px; background: var(--wf-block-med); border-radius: 3px; margin-bottom: 0.3rem; }
+.wf-format-desc { height: 5px; width: 90px; background: var(--wf-block); border-radius: 2px; }
+.wf-format-icon { width: 24px; height: 24px; border-radius: 5px; background: var(--wf-block); }
+.wf-export-toggle-row { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+.wf-toggle-item { display: flex; align-items: center; justify-content: space-between; padding: 0.45rem 0; border-bottom: 1px solid var(--wf-border); }
+.wf-toggle-item:last-child { border-bottom: none; }
+.wf-toggle-label { height: 6px; width: 80px; background: var(--wf-block); border-radius: 2px; }
+.wf-toggle-switch { width: 28px; height: 16px; border-radius: 100px; background: var(--wf-accent); border: 1px solid var(--wf-accent-b); flex-shrink: 0; }
+.wf-toggle-switch.off { background: var(--wf-block); border-color: var(--wf-border); }
+.wf-export-cta { height: 36px; border-radius: 8px; background: var(--wf-accent); border: 1px solid var(--wf-accent-b); width: 100%; margin-top: 0.25rem; }
+.wf-preview-panel { background: var(--wf-card); border: 1px solid var(--wf-border); border-radius: 10px; overflow: hidden; }
+.wf-preview-header { background: var(--wf-bg); border-bottom: 1px solid var(--wf-border); padding: 0.6rem 1rem; display: flex; align-items: center; justify-content: space-between; }
+.wf-preview-label { height: 6px; width: 60px; background: var(--wf-block-med); border-radius: 3px; }
+.wf-preview-actions { display: flex; gap: 0.4rem; }
+.wf-preview-action { height: 22px; width: 50px; border-radius: 5px; background: var(--wf-block); }
+.wf-preview-body { padding: 1.25rem; }
+.wf-preview-doc { background: var(--wf-bg); border: 1px solid var(--wf-border); border-radius: 8px; padding: 1.25rem; }
+.wf-doc-logo-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--wf-border); }
+.wf-doc-logo { width: 50px; height: 12px; background: var(--wf-block-med); border-radius: 3px; }
+.wf-doc-meta { height: 6px; width: 80px; background: var(--wf-block); border-radius: 2px; }
+.wf-doc-title { height: 11px; width: 70%; background: var(--wf-block-med); border-radius: 4px; margin-bottom: 0.4rem; }
+.wf-doc-subtitle { height: 7px; width: 45%; background: var(--wf-block); border-radius: 3px; margin-bottom: 1rem; }
+.wf-doc-section { margin-bottom: 0.9rem; }
+.wf-doc-section-head { height: 7px; width: 40%; background: var(--wf-accent-b); border-radius: 3px; margin-bottom: 0.45rem; opacity: 0.7; }
+.wf-doc-lines { display: flex; flex-direction: column; gap: 0.28rem; }
+.wf-doc-line { height: 5px; background: var(--wf-block); border-radius: 2px; }
+
+/* FOOTER */
+.case-footer { background: var(--bg-surface); border-top: 0.5px solid var(--border); padding: 3rem 4rem; text-align: center; transition: background 0.3s; }
+.case-footer-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.88rem; color: var(--terra); text-decoration: none;
+  border: 1px solid var(--accent-border); border-radius: 100px;
+  padding: 0.7rem 1.5rem; transition: background 0.2s;
+}
+.case-footer-link:hover { background: var(--accent-dim); }
+
+/* FADE IN */
+.fade-in { opacity:0; transform:translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-in.visible { opacity:1; transform:translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .section { padding: 3.5rem 1.5rem; }
+  .case-hero { padding: 7rem 1.5rem 4rem; }
+  .wf-live-layout, .wf-report-layout, .wf-export-layout,
+  .wf-sched-grid, .outcome-grid, .reflection-cols, .wf-key-topics { grid-template-columns: 1fr; }
+  .case-footer { padding: 3rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV (exact match to portfolio) -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="Tushar Bisen" class="nav-logo-img">
+  </a>
+  <ul class="nav-right">
+    <li><a href="index.html#work" class="nav-back-btn">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M8 10L4 6l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      All Work
+    </a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li style="display:flex;align-items:center;">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+        <span class="toggle-icon icon-sun">☀</span>
+        <span class="toggle-icon icon-moon">☽</span>
+      </button>
+    </li>
+    <li><a href="https://drive.google.com/file/d/1Kaz6TTUsaSzprqq8V6EZdSK_-AIRaRlG/view?usp=sharing" target="_blank" class="nav-resume">Resume</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="case-hero">
+  <div class="hero-orb-a"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="h-tag accent">FactSet · AI Product</span>
+      <span class="h-tag">Lead UX Designer</span>
+      <span class="h-tag">6–9 Months</span>
+      <span class="h-tag">2024–2025</span>
+    </div>
+    <h1 class="case-title">Earnings Call <em>Assistant</em></h1>
+    <p class="hero-sub">Designing an AI-powered research tool that transforms hours-long earnings calls into structured, actionable intelligence — helping market researchers work faster, smarter, and with greater confidence.</p>
+    <div class="hero-stats">
+      <div><div class="hstat-val">2–3<em>hr</em></div><div class="hstat-lbl">Calls Automated</div></div>
+      <div><div class="hstat-val">4<em>+</em></div><div class="hstat-lbl">Core Screens</div></div>
+      <div><div class="hstat-val">20<em>+</em></div><div class="hstat-lbl">Researcher Interviews</div></div>
+      <div><div class="hstat-val">★</div><div class="hstat-lbl">Star Award Winner</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- OVERVIEW -->
+<section class="section fade-in">
+  <div class="section-inner">
+    <p class="section-label">Overview</p>
+    <h2 class="section-title">What is an Earnings Call?</h2>
+    <p class="body-text">Every quarter, publicly listed companies host earnings calls — live sessions where executives share financial results, strategic updates, and forward guidance with investors and analysts. These calls are critical signals for the market.</p>
+    <p class="body-text"><strong>Market researchers at FactSet</strong> are responsible for listening to these calls, identifying key themes, analysing executive sentiment, cross-referencing performance against historical data, and producing written reports — all within tight turnaround windows.</p>
+    <div class="callout">
+      <p>The problem: a single earnings call can run <strong>2–3 hours</strong>. Researchers were expected to stay focused throughout, take structured notes, and produce analysis reports — often across multiple companies in a single day. <strong>Fatigue, missed insights, and inefficient re-listening were systemic pain points.</strong></p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- RESEARCH -->
+<section class="section fade-in" style="background:var(--bg-surface);">
+  <div class="section-inner">
+    <p class="section-label">Discovery</p>
+    <h2 class="section-title">What researchers were really going through</h2>
+    <p class="body-text">Before touching any design, I led a research phase — conducting interviews with 20+ market researchers across experience levels to understand their actual workflow, frustrations, and workarounds.</p>
+    <div class="insight-grid">
+      <div class="insight-card">
+        <div class="insight-icon">🎧</div>
+        <p class="insight-title">The re-listen loop</p>
+        <p class="insight-desc">Researchers commonly re-listened to the same 20–40 min segments multiple times to catch details they'd missed or to verify quotes for their reports.</p>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">📉</div>
+        <p class="insight-title">Attention fatigue</p>
+        <p class="insight-desc">Sustained focus over 2–3 hours led to cognitive overload. Critical decisions made in the final third of calls were frequently under-documented.</p>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">⏱</div>
+        <p class="insight-title">Tight reporting windows</p>
+        <p class="insight-desc">Reports needed to be published within hours of call completion. Researchers described the post-call period as "a race against the clock."</p>
+      </div>
+      <div class="insight-card">
+        <div class="insight-icon">🔀</div>
+        <p class="insight-title">Tool fragmentation</p>
+        <p class="insight-desc">Notes were spread across multiple tools — audio players, word processors, spreadsheets — with no unified workflow. Context switching was constant.</p>
+      </div>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">"By hour two, I'm barely keeping up. I'll catch the broad strokes but the specific numbers and forward guidance — I always have to go back for those."</p>
+      <p class="quote-attr">— Market Researcher, FactSet (interview participant)</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROBLEM FRAMING -->
+<section class="section fade-in">
+  <div class="section-inner">
+    <p class="section-label">Problem Framing</p>
+    <h2 class="section-title">Defining what we were really solving</h2>
+    <p class="body-text">The surface problem was "researchers miss things on long calls." But the deeper problem was that <strong>the entire post-call workflow was manual, fragmented, and cognitively expensive</strong> — and no single tool addressed the full arc from scheduling through to report delivery.</p>
+    <p class="body-text">We framed our design challenge as:</p>
+    <div class="callout green">
+      <p><strong>How might we design an AI-powered assistant that reliably captures, analyses, and surfaces earnings call intelligence — so researchers can focus on interpretation and insight rather than transcription and recall?</strong></p>
+    </div>
+    <p class="body-text">This shaped our scope: we'd need to design the <strong>full workflow</strong> — not just a report screen — covering scheduling, live call assistance, report generation, and export.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROCESS -->
+<section class="section fade-in" style="background:var(--bg-surface);">
+  <div class="section-inner">
+    <p class="section-label">Design Process</p>
+    <h2 class="section-title">How we approached it</h2>
+    <div class="process-steps">
+      <div class="process-step"><div class="step-num">01</div><div><p class="step-title">Research & Synthesis</p><p class="step-desc">Led 20+ interviews with researchers across seniority levels. Synthesised findings into affinity clusters. Mapped the current-state workflow end-to-end to identify failure points and opportunity areas.</p></div></div>
+      <div class="process-step"><div class="step-num">02</div><div><p class="step-title">Workflow Mapping & Information Architecture</p><p class="step-desc">Mapped the full researcher journey from pre-call scheduling to post-call report distribution. Defined 4 core workflow stages: Schedule → Monitor → Report → Export. Collaborated with PMs to align on scope and AI capability boundaries.</p></div></div>
+      <div class="process-step"><div class="step-num">03</div><div><p class="step-title">Concept Exploration & Iteration</p><p class="step-desc">Explored multiple directions for the report screen — conversational chat, dashboard-style, and document-style layouts. Iterated based on stakeholder and researcher feedback across 3 major design rounds.</p></div></div>
+      <div class="process-step"><div class="step-num">04</div><div><p class="step-title">Design System Alignment</p><p class="step-desc">Ensured all components adhered to FactSet's existing design system while introducing new AI-specific patterns — confidence indicators, sentiment chips, live transcription states — that could scale to other AI features.</p></div></div>
+      <div class="process-step"><div class="step-num">05</div><div><p class="step-title">Handoff & Engineering Collaboration</p><p class="step-desc">Delivered annotated Figma specs with edge case documentation. Maintained close collaboration with engineering during build, resolving design questions in real-time and adapting to constraints without compromising core UX principles.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- WIREFRAMES -->
+<section class="section wf-section fade-in">
+  <div class="section-inner" style="max-width:1100px;">
+    <p class="section-label">Design Explorations</p>
+    <h2 class="section-title">Key screens & flows</h2>
+    <p class="body-text" style="margin-bottom:0.5rem;">Wireframe representations of the four core workflow screens. High-fidelity screens are under NDA.</p>
+
+    <div class="wireframe-stack">
+
+      <!-- ── WF1: SCHEDULING DASHBOARD ── -->
+      <div>
+        <p class="wf-item-label">Screen 01 — Scheduling Dashboard</p>
+        <p class="wf-item-caption">Researchers browse upcoming earnings calls, schedule the AI assistant to monitor them, and track status of past and live calls — all in one unified view.</p>
+        <div class="wf-browser">
+          <div class="wf-chrome">
+            <div class="wf-dots"><div class="wf-dot r"></div><div class="wf-dot y"></div><div class="wf-dot g"></div></div>
+            <div class="wf-address"><span class="wf-lock">🔒</span>factset.com / earnings-assistant / schedule</div>
+          </div>
+          <div class="wf-nav-strip">
+            <div class="wf-logo-block"></div>
+            <div class="wf-nav-items">
+              <div class="wf-nav-item" style="width:50px;"></div>
+              <div class="wf-nav-item" style="width:60px;"></div>
+              <div class="wf-nav-item" style="width:55px;"></div>
+              <div class="wf-nav-item" style="width:70px;"></div>
+            </div>
+            <div class="wf-nav-cta"></div>
+          </div>
+          <div class="wf-content">
+            <!-- Page header -->
+            <div class="wf-page-header">
+              <div class="wf-breadcrumb">
+                <div class="wf-bread-item" style="width:50px;"></div>
+                <span class="wf-bread-sep">/</span>
+                <div class="wf-bread-item" style="width:80px; background:var(--wf-accent-b); opacity:0.6;"></div>
+              </div>
+              <div class="wf-page-title-block"></div>
+              <div class="wf-page-sub-block"></div>
+              <!-- Tabs -->
+              <div class="wf-tab-row">
+                <div class="wf-tab active"><div class="wf-tab-text" style="width:55px;"></div></div>
+                <div class="wf-tab"><div class="wf-tab-text" style="width:40px;"></div></div>
+                <div class="wf-tab"><div class="wf-tab-text" style="width:48px;"></div></div>
+              </div>
+            </div>
+            <!-- Toolbar -->
+            <div class="wf-sched-toolbar">
+              <div class="wf-sched-filter-row">
+                <div class="wf-filter-chip active"><div class="wf-filter-text" style="width:30px;"></div></div>
+                <div class="wf-filter-chip"><div class="wf-filter-text" style="width:25px;"></div></div>
+                <div class="wf-filter-chip"><div class="wf-filter-text" style="width:35px;"></div></div>
+                <div class="wf-filter-chip"><div class="wf-filter-text" style="width:28px;"></div></div>
+              </div>
+              <div class="wf-sched-add"><span class="wf-plus">+</span><div class="wf-blk-med" style="height:6px;width:70px;border-radius:3px;"></div></div>
+            </div>
+            <!-- Cards grid -->
+            <div class="wf-sched-grid">
+              <!-- Card 1: LIVE -->
+              <div class="wf-call-card live">
+                <div class="wf-call-card-top">
+                  <div class="wf-status-badge live-b"><div class="wf-badge-dot"></div><div class="wf-badge-text"></div></div>
+                  <div class="wf-blk" style="height:5px;width:55px;border-radius:2px;"></div>
+                </div>
+                <div class="wf-call-co-row">
+                  <div class="wf-co-logo">AAPL</div>
+                  <div class="wf-co-info"><div class="wf-co-name"></div><div class="wf-co-ticker"></div></div>
+                </div>
+                <div class="wf-call-meta">
+                  <div class="wf-meta-chip"><div class="wf-meta-chip-text" style="width:30px;"></div></div>
+                  <div class="wf-meta-chip"><div class="wf-meta-chip-text" style="width:40px;"></div></div>
+                  <div class="wf-meta-chip"><div class="wf-meta-chip-text" style="width:35px;"></div></div>
+                </div>
+                <div class="wf-call-desc-lines">
+                  <div class="wf-call-desc-line" style="width:100%;"></div>
+                  <div class="wf-call-desc-line" style="width:80%;"></div>
+                </div>
+                <div class="wf-call-actions">
+                  <div class="wf-action-btn green"></div>
+                  <div class="wf-action-btn ghost"></div>
+                </div>
+              </div>
+              <!-- Card 2: Scheduled -->
+              <div class="wf-call-card">
+                <div class="wf-call-card-top">
+                  <div class="wf-status-badge scheduled"><div class="wf-badge-text"></div></div>
+                  <div class="wf-blk" style="height:5px;width:55px;border-radius:2px;"></div>
+                </div>
+                <div class="wf-call-co-row">
+                  <div class="wf-co-logo">MSFT</div>
+                  <div class="wf-co-info"><div class="wf-co-name"></div><div class="wf-co-ticker"></div></div>
+                </div>
+                <div class="wf-call-meta">
+                  <div class="wf-meta-chip"><div class="wf-meta-chip-text" style="width:30px;"></div></div>
+                  <div class="wf-meta-chip"><div class="wf-meta-chip-text" style="width:45px;"></div></div>
+                </div>
+                <div class="wf-call-desc-lines">
+                  <div class="wf-call-desc-line" style="width:95%;"></div>
+                  <div class="wf-call-desc-line" style="width:70%;"></div>
+                </div>
+                <div class="wf-call-actions">
+                  <div class="wf-action-btn"></div>
+                  <div class="wf-action-btn ghost"></div>
+                </div>
+              </div>
+              <!-- Card 3: Completed -->
+              <div class="wf-call-card">
+                <div class="wf-call-card-top">
+                  <div class="wf-status-badge completed"><div class="wf-badge-text"></div></div>
+                  <div class="wf-blk" style="height:5px;width:55px;border-radius:2px;"></div>
+                </div>
+                <div class="wf-call-co-row">
+                  <div class="wf-co-logo">GOOG</div>
+                  <div class="wf-co-info"><div class="wf-co-name"></div><div class="wf-co-ticker"></div></div>
+                </div>
+                <div class="wf-call-meta">
+                  <div class="wf-meta-chip"><div class="wf-meta-chip-text" style="width:30px;"></div></div>
+                  <div class="wf-meta-chip"><div class="wf-meta-chip-text" style="width:40px;"></div></div>
+                </div>
+                <div class="wf-call-desc-lines">
+                  <div class="wf-call-desc-line" style="width:88%;"></div>
+                  <div class="wf-call-desc-line" style="width:60%;"></div>
+                </div>
+                <div class="wf-call-actions">
+                  <div class="wf-action-btn ghost" style="border-color:var(--wf-accent-b);"></div>
+                  <div class="wf-action-btn ghost"></div>
+                </div>
+              </div>
+              <!-- Add new -->
+              <div class="wf-sched-empty">
+                <div class="wf-empty-icon"><div class="wf-empty-plus"></div></div>
+                <div class="wf-empty-text"></div>
+                <div class="wf-blk" style="height:5px;width:55px;border-radius:2px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WF2: LIVE CALL MONITOR ── -->
+      <div>
+        <p class="wf-item-label">Screen 02 — Live Call Monitor</p>
+        <p class="wf-item-caption">During an active earnings call, the assistant shows a live transcript with AI-highlighted key statements, real-time sentiment tracking, a keyword cloud, and auto-flagged insight alerts in the sidebar.</p>
+        <div class="wf-browser">
+          <div class="wf-chrome">
+            <div class="wf-dots"><div class="wf-dot r"></div><div class="wf-dot y"></div><div class="wf-dot g"></div></div>
+            <div class="wf-address"><span class="wf-lock">🔒</span>factset.com / earnings-assistant / live / AAPL-Q2-2025</div>
+          </div>
+          <div class="wf-nav-strip">
+            <div class="wf-logo-block"></div>
+            <div class="wf-nav-items">
+              <div class="wf-nav-item" style="width:50px;"></div>
+              <div class="wf-nav-item" style="width:60px; background:var(--wf-accent-b); opacity:0.5;"></div>
+              <div class="wf-nav-item" style="width:55px;"></div>
+            </div>
+            <div class="wf-nav-cta"></div>
+          </div>
+          <div class="wf-content">
+            <!-- Live header bar -->
+            <div class="wf-live-header">
+              <div class="wf-live-left">
+                <div class="wf-live-indicator"><div class="wf-live-pulse"></div><div class="wf-live-text"></div></div>
+                <div style="width:1px;height:20px;background:var(--wf-green-b);opacity:0.4;"></div>
+                <div class="wf-live-co-info"><div class="wf-live-co-name"></div><div class="wf-live-co-sub"></div></div>
+              </div>
+              <div class="wf-live-right">
+                <div class="wf-timer-block"><div class="wf-timer-val"></div><div class="wf-timer-lbl"></div></div>
+                <div class="wf-live-controls">
+                  <div class="wf-ctrl-btn"></div>
+                  <div class="wf-ctrl-btn primary"></div>
+                  <div class="wf-ctrl-btn"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Main layout -->
+            <div class="wf-live-layout">
+              <!-- Transcript -->
+              <div>
+                <div class="wf-transcript-panel">
+                  <div class="wf-transcript-toolbar">
+                    <div class="wf-tt-label"></div>
+                    <div class="wf-tt-search"></div>
+                  </div>
+                  <div class="wf-transcript-body">
+                    <!-- Speaker 1 -->
+                    <div class="wf-speaker-block">
+                      <div class="wf-sp-avatar"></div>
+                      <div class="wf-sp-body">
+                        <div class="wf-sp-header"><div class="wf-sp-name"></div><div class="wf-sp-role"></div><div class="wf-sp-time"></div></div>
+                        <div class="wf-sp-lines">
+                          <div class="wf-sp-line" style="width:100%;"></div>
+                          <div class="wf-sp-line" style="width:88%;"></div>
+                          <div class="wf-sp-line" style="width:94%;"></div>
+                          <div class="wf-sp-line" style="width:72%;"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- AI Highlight -->
+                    <div class="wf-highlight-block">
+                      <div class="wf-hl-header"><div class="wf-hl-icon"></div><div class="wf-hl-tag"></div></div>
+                      <div class="wf-hl-lines">
+                        <div class="wf-hl-line" style="width:100%;"></div>
+                        <div class="wf-hl-line" style="width:85%;"></div>
+                        <div class="wf-hl-line" style="width:60%;"></div>
+                      </div>
+                    </div>
+                    <!-- Speaker 2 -->
+                    <div class="wf-speaker-block">
+                      <div class="wf-sp-avatar" style="background:var(--wf-accent);opacity:0.5;"></div>
+                      <div class="wf-sp-body">
+                        <div class="wf-sp-header"><div class="wf-sp-name" style="width:55px;"></div><div class="wf-sp-role"></div><div class="wf-sp-time"></div></div>
+                        <div class="wf-sp-lines">
+                          <div class="wf-sp-line" style="width:100%;"></div>
+                          <div class="wf-sp-line" style="width:92%;"></div>
+                          <div class="wf-sp-line" style="width:76%;"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Second highlight -->
+                    <div class="wf-highlight-block" style="background:var(--wf-accent);border-color:var(--wf-accent-b);">
+                      <div class="wf-hl-header"><div class="wf-hl-icon" style="background:var(--wf-accent-b);"></div><div class="wf-hl-tag" style="background:var(--wf-accent-b);"></div></div>
+                      <div class="wf-hl-lines">
+                        <div class="wf-hl-line" style="width:95%;background:var(--wf-accent);border-color:var(--wf-accent-b);"></div>
+                        <div class="wf-hl-line" style="width:70%;background:var(--wf-accent);border-color:var(--wf-accent-b);"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Sidebar -->
+              <div class="wf-sidebar-panels">
+                <!-- Sentiment -->
+                <div class="wf-sidebar-panel">
+                  <div class="wf-panel-title"></div>
+                  <div class="wf-sent-row"><div class="wf-sent-label"></div><div class="wf-sent-track"><div class="wf-sent-fill pos"></div></div><div class="wf-sent-pct"></div></div>
+                  <div class="wf-sent-row"><div class="wf-sent-label"></div><div class="wf-sent-track"><div class="wf-sent-fill neu"></div></div><div class="wf-sent-pct"></div></div>
+                  <div class="wf-sent-row"><div class="wf-sent-label"></div><div class="wf-sent-track"><div class="wf-sent-fill neg"></div></div><div class="wf-sent-pct"></div></div>
+                </div>
+                <!-- Keywords -->
+                <div class="wf-sidebar-panel">
+                  <div class="wf-panel-title"></div>
+                  <div class="wf-kw-cloud">
+                    <div class="wf-kw-chip" style="width:52px;"></div>
+                    <div class="wf-kw-chip" style="width:68px;"></div>
+                    <div class="wf-kw-chip" style="width:44px;"></div>
+                    <div class="wf-kw-chip" style="width:78px;"></div>
+                    <div class="wf-kw-chip" style="width:55px;"></div>
+                    <div class="wf-kw-chip" style="width:62px;"></div>
+                    <div class="wf-kw-chip" style="width:48px;"></div>
+                  </div>
+                </div>
+                <!-- Alerts -->
+                <div class="wf-sidebar-panel">
+                  <div class="wf-panel-title"></div>
+                  <div class="wf-alerts">
+                    <div class="wf-alert-row">
+                      <div class="wf-alert-dot"></div>
+                      <div class="wf-alert-lines"><div class="wf-alert-line" style="width:110px;"></div><div class="wf-alert-line" style="width:85px;"></div></div>
+                    </div>
+                    <div class="wf-alert-row">
+                      <div class="wf-alert-dot gold"></div>
+                      <div class="wf-alert-lines"><div class="wf-alert-line" style="width:100px;"></div><div class="wf-alert-line" style="width:70px;"></div></div>
+                    </div>
+                    <div class="wf-alert-row">
+                      <div class="wf-alert-dot"></div>
+                      <div class="wf-alert-lines"><div class="wf-alert-line" style="width:115px;"></div><div class="wf-alert-line" style="width:80px;"></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WF3: AI REPORT ── -->
+      <div>
+        <p class="wf-item-label">Screen 03 — AI-Generated Report</p>
+        <p class="wf-item-caption">After the call ends, the assistant generates a structured report with: executive summary, key topics ranked by importance, sentiment breakdown, market context comparison, and speaker attribution — all navigable via a sticky table of contents.</p>
+        <div class="wf-browser">
+          <div class="wf-chrome">
+            <div class="wf-dots"><div class="wf-dot r"></div><div class="wf-dot y"></div><div class="wf-dot g"></div></div>
+            <div class="wf-address"><span class="wf-lock">🔒</span>factset.com / earnings-assistant / report / AAPL-Q2-2025</div>
+          </div>
+          <div class="wf-nav-strip">
+            <div class="wf-logo-block"></div>
+            <div class="wf-nav-items"><div class="wf-nav-item" style="width:50px;"></div><div class="wf-nav-item" style="width:70px; background:var(--wf-accent-b); opacity:0.5;"></div><div class="wf-nav-item" style="width:55px;"></div></div>
+            <div style="display:flex;gap:0.5rem;"><div class="wf-nav-cta"></div><div class="wf-nav-cta" style="background:var(--wf-block);border:1px solid var(--wf-border);width:50px;"></div></div>
+          </div>
+          <div class="wf-content">
+            <div class="wf-page-header">
+              <div class="wf-breadcrumb"><div class="wf-bread-item" style="width:50px;"></div><span class="wf-bread-sep">/</span><div class="wf-bread-item" style="width:70px;"></div><span class="wf-bread-sep">/</span><div class="wf-bread-item" style="width:90px;background:var(--wf-accent-b);opacity:0.6;"></div></div>
+              <div class="wf-page-title-block" style="width:50%;"></div>
+              <div style="display:flex;gap:0.5rem;margin-bottom:1.25rem;">
+                <div class="wf-blk" style="height:20px;width:70px;border-radius:100px;border:1px solid var(--wf-green-b);background:var(--wf-green);"></div>
+                <div class="wf-blk" style="height:20px;width:80px;border-radius:100px;border:1px solid var(--wf-border);"></div>
+                <div class="wf-blk" style="height:20px;width:65px;border-radius:100px;border:1px solid var(--wf-border);"></div>
+              </div>
+            </div>
+            <div class="wf-report-layout">
+              <!-- TOC -->
+              <div class="wf-report-toc">
+                <div class="wf-toc-header"></div>
+                <div class="wf-toc-section">
+                  <div class="wf-toc-section-label"></div>
+                  <div class="wf-toc-item active"><div class="wf-toc-dot"></div><div class="wf-toc-text" style="width:80px;"></div></div>
+                  <div class="wf-toc-item"><div class="wf-toc-dot dim"></div><div class="wf-toc-text" style="width:65px;"></div></div>
+                  <div class="wf-toc-item"><div class="wf-toc-dot dim"></div><div class="wf-toc-text" style="width:75px;"></div></div>
+                </div>
+                <div class="wf-toc-section">
+                  <div class="wf-toc-section-label"></div>
+                  <div class="wf-toc-item"><div class="wf-toc-dot dim"></div><div class="wf-toc-text" style="width:70px;"></div></div>
+                  <div class="wf-toc-item"><div class="wf-toc-dot dim"></div><div class="wf-toc-text" style="width:60px;"></div></div>
+                </div>
+                <div class="wf-toc-section">
+                  <div class="wf-toc-section-label"></div>
+                  <div class="wf-toc-item"><div class="wf-toc-dot dim"></div><div class="wf-toc-text" style="width:75px;"></div></div>
+                  <div class="wf-toc-item"><div class="wf-toc-dot dim"></div><div class="wf-toc-text" style="width:55px;"></div></div>
+                </div>
+              </div>
+              <!-- Report content -->
+              <div class="wf-report-main">
+                <!-- Executive Summary -->
+                <div class="wf-report-section accent-l">
+                  <div class="wf-report-section-head">
+                    <div class="wf-rsh-left"><div class="wf-rsh-icon"></div><div class="wf-rsh-title"></div></div>
+                    <div class="wf-rsh-tag"></div>
+                  </div>
+                  <div class="wf-report-body">
+                    <div class="wf-report-line" style="width:100%;"></div>
+                    <div class="wf-report-line" style="width:96%;"></div>
+                    <div class="wf-report-line" style="width:88%;"></div>
+                    <div class="wf-report-line" style="width:93%;"></div>
+                    <div class="wf-report-line" style="width:70%;"></div>
+                  </div>
+                  <div class="wf-sent-summary">
+                    <div class="wf-sent-chip"><div class="wf-sent-chip-text"></div></div>
+                    <div class="wf-sent-chip gold"><div class="wf-sent-chip-text" style="background:var(--wf-gold-b);"></div></div>
+                    <div class="wf-sent-chip neg"><div class="wf-sent-chip-text" style="background:rgba(200,80,80,0.3);"></div></div>
+                  </div>
+                </div>
+                <!-- Key Topics -->
+                <div class="wf-report-section">
+                  <div class="wf-report-section-head">
+                    <div class="wf-rsh-left"><div class="wf-rsh-icon gold"></div><div class="wf-rsh-title"></div></div>
+                    <div class="wf-rsh-tag"></div>
+                  </div>
+                  <div class="wf-key-topics">
+                    <div class="wf-topic-row"><div class="wf-topic-num"></div><div class="wf-topic-text"></div><div class="wf-topic-badge"></div></div>
+                    <div class="wf-topic-row"><div class="wf-topic-num"></div><div class="wf-topic-text"></div><div class="wf-topic-badge"></div></div>
+                    <div class="wf-topic-row"><div class="wf-topic-num"></div><div class="wf-topic-text"></div><div class="wf-topic-badge" style="background:var(--wf-gold);border-color:var(--wf-gold-b);"></div></div>
+                    <div class="wf-topic-row"><div class="wf-topic-num"></div><div class="wf-topic-text"></div><div class="wf-topic-badge" style="background:var(--wf-gold);border-color:var(--wf-gold-b);"></div></div>
+                  </div>
+                </div>
+                <!-- Market Context -->
+                <div class="wf-report-section green-l">
+                  <div class="wf-report-section-head">
+                    <div class="wf-rsh-left"><div class="wf-rsh-icon green"></div><div class="wf-rsh-title"></div></div>
+                    <div class="wf-rsh-tag"></div>
+                  </div>
+                  <div class="wf-compare-row">
+                    <div class="wf-compare-cell"><div class="wf-compare-label"></div><div class="wf-compare-val"></div><div class="wf-compare-delta up"></div></div>
+                    <div class="wf-compare-cell"><div class="wf-compare-label"></div><div class="wf-compare-val"></div><div class="wf-compare-delta up"></div></div>
+                    <div class="wf-compare-cell"><div class="wf-compare-label"></div><div class="wf-compare-val"></div><div class="wf-compare-delta dn"></div></div>
+                    <div class="wf-compare-cell"><div class="wf-compare-label"></div><div class="wf-compare-val"></div><div class="wf-compare-delta up"></div></div>
+                  </div>
+                </div>
+                <!-- Detailed analysis -->
+                <div class="wf-report-section gold-l">
+                  <div class="wf-report-section-head">
+                    <div class="wf-rsh-left"><div class="wf-rsh-icon gold"></div><div class="wf-rsh-title"></div></div>
+                  </div>
+                  <div class="wf-report-body">
+                    <div class="wf-report-line" style="width:100%;"></div>
+                    <div class="wf-report-line" style="width:90%;"></div>
+                    <div class="wf-report-line" style="width:95%;"></div>
+                    <div class="wf-report-line" style="width:65%;"></div>
+                  </div>
+                </div>
+              </div><!-- end wf-report-main -->
+            </div><!-- end wf-report-layout -->
+          </div><!-- end wf-content -->
+        </div><!-- end wf-browser -->
+      </div><!-- end WF3 item -->
+
+      <!-- WF4: EXPORT -->
+      <div>
+        <p class="wf-item-label">Screen 04 — Export & Distribution</p>
+        <p class="wf-item-caption">Researchers configure and export the generated report — choosing format (PDF, Word, CSV), selecting which sections to include, and previewing the final document before distribution.</p>
+        <div class="wf-browser">
+          <div class="wf-chrome">
+            <div class="wf-dots"><div class="wf-dot r"></div><div class="wf-dot y"></div><div class="wf-dot g"></div></div>
+            <div class="wf-address"><span class="wf-lock">🔒</span>factset.com / earnings-assistant / report / AAPL-Q2-2025 / export</div>
+          </div>
+          <div class="wf-nav-strip">
+            <div class="wf-logo-block"></div>
+            <div class="wf-nav-items"><div class="wf-nav-item" style="width:50px;"></div><div class="wf-nav-item" style="width:60px;"></div><div class="wf-nav-item" style="width:55px;background:var(--wf-accent-b);opacity:0.5;"></div></div>
+            <div class="wf-nav-cta"></div>
+          </div>
+          <div class="wf-content">
+            <div class="wf-page-header">
+              <div class="wf-breadcrumb"><div class="wf-bread-item" style="width:50px;"></div><span class="wf-bread-sep">/</span><div class="wf-bread-item" style="width:70px;"></div><span class="wf-bread-sep">/</span><div class="wf-bread-item" style="width:90px;"></div><span class="wf-bread-sep">/</span><div class="wf-bread-item" style="width:50px;background:var(--wf-accent-b);opacity:0.6;"></div></div>
+              <div class="wf-page-title-block" style="width:35%;margin-bottom:1.25rem;"></div>
+            </div>
+            <div class="wf-export-layout">
+              <div class="wf-export-panel">
+                <div class="wf-export-section-label"></div>
+                <div class="wf-format-options">
+                  <div class="wf-format-opt selected">
+                    <div class="wf-format-radio"></div>
+                    <div class="wf-format-info"><div class="wf-format-name"></div><div class="wf-format-desc"></div></div>
+                    <div class="wf-format-icon" style="background:var(--wf-accent);border:1px solid var(--wf-accent-b);"></div>
+                  </div>
+                  <div class="wf-format-opt">
+                    <div class="wf-format-radio"></div>
+                    <div class="wf-format-info"><div class="wf-format-name"></div><div class="wf-format-desc"></div></div>
+                    <div class="wf-format-icon"></div>
+                  </div>
+                  <div class="wf-format-opt">
+                    <div class="wf-format-radio"></div>
+                    <div class="wf-format-info"><div class="wf-format-name"></div><div class="wf-format-desc"></div></div>
+                    <div class="wf-format-icon"></div>
+                  </div>
+                </div>
+                <div style="height:1px;background:var(--wf-border);margin:0.85rem 0;"></div>
+                <div class="wf-export-section-label" style="margin-bottom:0.65rem;"></div>
+                <div class="wf-export-toggle-row">
+                  <div class="wf-toggle-item"><div class="wf-toggle-label" style="width:90px;"></div><div class="wf-toggle-switch"></div></div>
+                  <div class="wf-toggle-item"><div class="wf-toggle-label" style="width:75px;"></div><div class="wf-toggle-switch"></div></div>
+                  <div class="wf-toggle-item"><div class="wf-toggle-label" style="width:80px;"></div><div class="wf-toggle-switch off"></div></div>
+                  <div class="wf-toggle-item"><div class="wf-toggle-label" style="width:95px;"></div><div class="wf-toggle-switch"></div></div>
+                </div>
+                <div class="wf-export-cta"></div>
+              </div>
+              <div class="wf-preview-panel">
+                <div class="wf-preview-header">
+                  <div class="wf-preview-label"></div>
+                  <div class="wf-preview-actions"><div class="wf-preview-action"></div><div class="wf-preview-action"></div></div>
+                </div>
+                <div class="wf-preview-body">
+                  <div class="wf-preview-doc">
+                    <div class="wf-doc-logo-row"><div class="wf-doc-logo"></div><div class="wf-doc-meta"></div></div>
+                    <div class="wf-doc-title"></div>
+                    <div class="wf-doc-subtitle"></div>
+                    <div class="wf-doc-section">
+                      <div class="wf-doc-section-head"></div>
+                      <div class="wf-doc-lines"><div class="wf-doc-line" style="width:100%;"></div><div class="wf-doc-line" style="width:92%;"></div><div class="wf-doc-line" style="width:88%;"></div><div class="wf-doc-line" style="width:75%;"></div></div>
+                    </div>
+                    <div class="wf-doc-section">
+                      <div class="wf-doc-section-head"></div>
+                      <div class="wf-doc-lines"><div class="wf-doc-line" style="width:100%;"></div><div class="wf-doc-line" style="width:95%;"></div><div class="wf-doc-line" style="width:60%;"></div></div>
+                    </div>
+                    <div class="wf-doc-section">
+                      <div class="wf-doc-section-head"></div>
+                      <div class="wf-doc-lines"><div class="wf-doc-line" style="width:100%;"></div><div class="wf-doc-line" style="width:82%;"></div><div class="wf-doc-line" style="width:68%;"></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end wireframe-stack -->
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- OUTCOMES -->
+<section class="section fade-in">
+  <div class="section-inner">
+    <p class="section-label">Outcomes</p>
+    <h2 class="section-title">Reception & Impact</h2>
+    <p class="body-text">The Earnings Call Assistant launched to strong qualitative reception. Researcher feedback became our primary signal — and it was overwhelmingly positive.</p>
+    <div class="outcome-grid">
+      <div class="outcome-card hi"><div class="outcome-icon">⚡</div><p class="outcome-title">Dramatically reduced re-listening</p><p class="outcome-desc">Researchers reported they no longer needed to re-listen to recordings for key data points — the structured report surfaced everything within minutes of call completion.</p></div>
+      <div class="outcome-card hi"><div class="outcome-icon">🎯</div><p class="outcome-title">Fewer missed insights</p><p class="outcome-desc">AI-flagged highlights and sentiment analysis helped researchers catch nuanced statements — especially in the latter half of long calls where attention typically fades.</p></div>
+      <div class="outcome-card"><div class="outcome-icon">🔄</div><p class="outcome-title">Streamlined reporting workflow</p><p class="outcome-desc">By unifying scheduling, monitoring, report generation, and export, we eliminated the tool-switching overhead that had fragmented researchers' work.</p></div>
+      <div class="outcome-card"><div class="outcome-icon">🤝</div><p class="outcome-title">Cross-team adoption interest</p><p class="outcome-desc">Teams adjacent to research — including investor relations and portfolio analytics — expressed strong interest, signalling broader product-market fit.</p></div>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">"This is exactly what we needed. I used to dread back-to-back earnings days. Now it feels manageable."</p>
+      <p class="quote-attr">— Senior Market Researcher, FactSet (post-launch feedback)</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- REFLECTION -->
+<section class="section fade-in" style="background:var(--bg-surface);">
+  <div class="section-inner">
+    <p class="section-label">Reflection</p>
+    <h2 class="section-title">What I learned</h2>
+    <p class="body-text">This project deepened my thinking on designing for AI-augmented workflows — where the challenge isn't just "what does this screen look like" but "how does this human–AI relationship feel trustworthy in high-stakes contexts."</p>
+    <div class="reflection-cols">
+      <div class="refl-card worked">
+        <p class="refl-heading">What worked well</p>
+        <ul class="refl-list">
+          <li>Starting with deep researcher interviews grounded every decision in real pain, not assumptions</li>
+          <li>Designing the full workflow — not just the report screen — created a coherent experience</li>
+          <li>Close engineering collaboration during build prevented costly late-stage rework</li>
+          <li>Iterating on stakeholder feedback kept the project moving without formal testing overhead</li>
+        </ul>
+      </div>
+      <div class="refl-card learned">
+        <p class="refl-heading">What I'd do differently</p>
+        <ul class="refl-list">
+          <li>Establish formal success metrics earlier — qualitative feedback was strong but numbers tell a richer story</li>
+          <li>Run structured usability sessions mid-design, not just walkthroughs</li>
+          <li>Involve researchers more in AI confidence and accuracy communication design</li>
+          <li>Plan for onboarding — power users adapted quickly but newer researchers needed guidance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="case-footer">
+  <a href="index.html" class="case-footer-link">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    Back to all case studies
+  </a>
+</div>
+
+<script>
+  const htmlEl = document.documentElement;
+  const toggleBtn = document.getElementById('themeToggle');
+  toggleBtn.addEventListener('click', () => {
+    const next = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    htmlEl.setAttribute('data-theme', next);
+    localStorage.setItem('tb-theme', next);
+  });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
